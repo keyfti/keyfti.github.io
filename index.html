@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>keyfti / linux-from-nothing</title>
+    <title>linux-from-nothing</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,54 +11,52 @@
     <header>
         <div class="meta-nav">
             <span>keyfti / linux-from-nothing</span>
-            <span class="status-tag">lfn v0.1.0</span>
+            <span class="status-tag">v0.1.0</span>
         </div>
         <h1>Linux From Nothing</h1>
-        <p class="subtitle">Budowa niezależnego systemu operacyjnego od czystej, pustej przestrzeni dyskowej.</p>
     </header>
 
     <main>
         <section class="block">
-            <h2>Manifest projektu</h2>
-            <p>Projekt LFN powstał w celu pełnego zrozumienia architektury systemów operacyjnych z rodziny Linux. Cel jest prosty: kompilacja toolchainu, przygotowanie jądra oraz konfiguracja przestrzeni użytkownika bez gotowych instalatorów, skryptów automatyzujących i zewnętrznych dystrybucji bazowych.</p>
+            <h2>Projekt</h2>
+            <p>Budowa niezależnego systemu operacyjnego od czystej przestrzeni dyskowej. Cel obejmuje konfigurację środowiska, kompilację jądra jądra oraz przygotowanie przestrzeni użytkownika.</p>
         </section>
 
         <section class="block">
-            <h2>Fazy implementacji</h2>
+            <h2>Etapy</h2>
             <ul class="roadmap-list">
                 <li>
                     <span class="step-num">01</span>
                     <div class="step-content">
-                        <strong>Środowisko i Cross-Compiler</strong>
-                        <p>Konfiguracja systemu hosta, budowa maszynistki kompilacji (binutils, gcc, glibc).</p>
+                        <strong>Toolchain</strong>
+                        <p>Konfiguracja środowiska hosta i budowa cross-compilera.</p>
                     </div>
                 </li>
                 <li>
                     <span class="step-num">02</span>
                     <div class="step-content">
-                        <strong>Jądro i Przestrzeń Rootfs</strong>
-                        <p>Kompilacja monolitycznego jądra Linux, organizacja bazowych katalogów systemowych.</p>
+                        <strong>Kernel</strong>
+                        <p>Kompilacja jądra Linux i organizacja katalogów rootfs.</p>
                     </div>
                 </li>
                 <li>
                     <span class="step-num">03</span>
                     <div class="step-content">
-                        <strong>Inicjalizacja i Pierwszy Boot</strong>
-                        <p>Napisanie skryptu init, konfiguracja demona BusyBox, załadowanie systemu w emulatorze.</p>
+                        <strong>Init</strong>
+                        <p>Konfiguracja skryptu rozruchowego i systemu inicjalizacji.</p>
                     </div>
                 </li>
             </ul>
         </section>
 
         <section class="block">
-            <h2>Baza zasobów</h2>
-            <p>Zobacz bazowe pliki źródłowe i pełną historię rewizji systemu operacyjnego bezpośrednio w serwisie:</p>
-            <a href="https://github.com/keyfti/linux-from-nothing" class="terminal-link">Otwórz kod źródłowy na GitHubie</a>
+            <h2>Kod źródłowy</h2>
+            <a href="https://github.com" class="terminal-link">Otwórz repozytorium projektu</a>
         </section>
     </main>
 
     <footer>
-        <p>Projekt rozwijany niezależnie. Publikacja na licencji MIT.</p>
+        <p>Licencja MIT</p>
     </footer>
 
 </body>
