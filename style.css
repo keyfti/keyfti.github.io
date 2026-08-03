@@ -7,103 +7,183 @@
 body {
     background-color: #0b0e14;
     color: #c9d1d9;
-    font-family: ui-monospace, monospace;
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
     line-height: 1.6;
-    padding: 40px 20px;
 }
 
-header, main, footer {
-    max-width: 650px;
+.container {
+    max-width: 900px;
     margin: 0 auto;
+    padding: 0 20px;
 }
 
-header {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #21262d;
-}
-
-.meta-nav {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
-    color: #8b949e;
-    margin-bottom: 10px;
-}
-
-.status-tag {
-    color: #58a6ff;
-}
-
-header h1 {
-    font-size: 1.8rem;
+.section-title {
+    font-size: 1.2rem;
     color: #f0f6fc;
     font-weight: 600;
+    margin-bottom: 30px;
 }
 
-.block {
-    margin-bottom: 35px;
-}
-
-.block h2 {
-    font-size: 1.1rem;
-    color: #f0f6fc;
-    margin-bottom: 10px;
-    font-weight: 600;
-}
-
-.block h2::before {
-    content: "> ";
+.section-title::before {
+    content: "// ";
     color: #38bdf8;
 }
 
-p {
-    font-size: 0.9rem;
-    color: #94a3b8;
+.hero {
+    padding: 60px 0;
+    border-bottom: 1px solid #21262d;
+    background: linear-gradient(180deg, #0f141c 0%, #0b0e14 100%);
 }
 
-.roadmap-list {
-    list-style: none;
-    margin-top: 15px;
-}
-
-.roadmap-list li {
-    display: flex;
-    gap: 15px;
+.badge {
+    display: inline-block;
+    background-color: #161b22;
+    border: 1px solid #30363d;
+    color: #58a6ff;
+    padding: 4px 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
     margin-bottom: 20px;
 }
 
-.step-num {
+.hero h1 {
+    font-size: 2.2rem;
+    color: #f0f6fc;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.hero-text {
+    font-size: 1rem;
+    color: #8b949e;
+    max-width: 700px;
+    margin-bottom: 30px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #1f2937;
+    border: 1px solid #374151;
     color: #38bdf8;
+    padding: 10px 20px;
+    text-decoration: none;
     font-weight: bold;
     font-size: 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
 }
 
-.step-content strong {
-    display: block;
+.btn-primary:hover {
+    background-color: #374151;
+    border-color: #38bdf8;
+}
+
+.features {
+    padding: 50px 0;
+    border-bottom: 1px solid #21262d;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: #12161f;
+    border: 1px solid #21262d;
+    padding: 25px;
+    border-radius: 6px;
+}
+
+.card-icon {
+    font-size: 1.3rem;
+    color: #38bdf8;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #f0f6fc;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card p {
+    color: #8b949e;
+    font-size: 0.85rem;
+}
+
+.steps {
+    padding: 50px 0;
+    border-bottom: 1px solid #21262d;
+}
+
+.steps-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.step-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.step-number {
+    background-color: #111827;
+    border: 1px solid #1e293b;
+    color: #38bdf8;
+    font-weight: bold;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.step-info h3 {
+    color: #f0f6fc;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+.step-info p {
+    color: #8b949e;
+    font-size: 0.85rem;
+}
+
+.faq {
+    padding: 50px 0;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.faq-item h4 {
     color: #f0f6fc;
     font-size: 0.95rem;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
-.step-content p {
-    font-size: 0.85rem;
+.faq-item p {
     color: #8b949e;
-}
-
-.terminal-link {
-    color: #38bdf8;
-    text-decoration: none;
-    font-size: 0.9rem;
-}
-
-.terminal-link:hover {
-    text-decoration: underline;
+    font-size: 0.85rem;
 }
 
 footer {
-    margin-top: 60px;
-    padding-top: 15px;
+    padding: 30px 0;
     border-top: 1px solid #21262d;
     font-size: 0.75rem;
     color: #484f58;
+    text-align: center;
 }
