@@ -5,13 +5,13 @@
 }
 
 :root {
-    --bg: #030712;
-    --surface: #0b1329;
-    --border: #1f293d;
-    --border-hover: #38bdf8;
+    --bg: #090a0f;
+    --surface: #12131a;
+    --border: #222530;
+    --border-hover: #22c55e;
     --text-main: #f3f4f6;
     --text-muted: #9ca3af;
-    --accent: #38bdf8;
+    --accent: #22c55e;
 }
 
 body {
@@ -44,9 +44,9 @@ body {
 .badge {
     display: inline-flex;
     align-items: center;
-    background: #0c4a6e;
-    color: #38bdf8;
-    border: 1px solid #0369a1;
+    background: #14532d;
+    color: #22c55e;
+    border: 1px solid #166534;
     padding: 4px 12px;
     font-size: 0.75rem;
     font-weight: 600;
