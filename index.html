@@ -15,7 +15,7 @@
         <div class="container nav-container">
             <ul class="nav-links">
                 <li><a href="index.html" class="active-link">Home</a></li>
-                <li><a href="https://github.com/keyfti/linux-from-nothing">Projects</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="https://github.com/keyfti">GitHub</a></li>
             </ul>
         </div>
@@ -32,7 +32,7 @@
                 </p>
                 <div class="hero-buttons fade-in-up delay-4">
                     <a href="https://github.com/keyfti" class="btn-primary">View GitHub &rarr;</a>
-                    <a href="https://keyfti.github.io/linux-from-nothing/" class="btn-secondary">Explore LFN &darr;</a>
+                    <a href="#projects" class="btn-secondary">View Projects &darr;</a>
                 </div>
             </div>
         </div>
@@ -50,31 +50,41 @@
         </div>
     </section>
 
-    <section class="features fade-in-up visible">
+    <section id="projects" class="features fade-in-up visible">
         <div class="container">
             <div class="section-label">// PROJECTS</div>
             <h2 class="section-title">Featured Work</h2>
             <div class="grid">
-                <div class="card">
+                <!-- LFN - główny projekt z wyróżnionym przyciskiem -->
+                <div class="card lfn-card">
                     <div class="card-header">
                         <span class="card-num">01</span>
                         <h3>Linux From Nothing</h3>
                     </div>
                     <p>A fully customizable, source-based Linux distribution. No package manager, pure manual compilation, crafted for education.</p>
+                    <div style="margin-top: 16px;">
+                        <a href="https://keyfti.github.io/linux-from-nothing/" class="btn-lfn">Open LFN Project &rarr;</a>
+                    </div>
                 </div>
-                <div class="card">
+                
+                <!-- Coming soon - placeholder -->
+                <div class="card coming-soon">
                     <div class="card-header">
                         <span class="card-num">02</span>
-                        <h3>Custom Toolchains</h3>
+                        <h3>Next Project</h3>
                     </div>
-                    <p>Building cross-compilers and isolated environments (Binutils, GCC, Glibc) independent of the host system.</p>
+                    <p>More low-level tools and system experiments are in development. Stay tuned.</p>
+                    <div style="margin-top: 16px; color: var(--text-muted); font-size: 0.8rem;">Coming soon</div>
                 </div>
-                <div class="card">
+                
+                <!-- Trzecia karta jako dodatkowy placeholder -->
+                <div class="card coming-soon">
                     <div class="card-header">
                         <span class="card-num">03</span>
-                        <h3>Kernel Projects</h3>
+                        <h3>Future Work</h3>
                     </div>
-                    <p>Linux kernel compilation from source, tailored to specific hardware architectures and embedded use-cases.</p>
+                    <p>Exploring new architectures and minimal system designs.</p>
+                    <div style="margin-top: 16px; color: var(--text-muted); font-size: 0.8rem;">Coming soon</div>
                 </div>
             </div>
         </div>
