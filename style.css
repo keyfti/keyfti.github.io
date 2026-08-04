@@ -27,7 +27,21 @@ body.fade-out { opacity: 0; }
     font-weight: 500; transition: color 0.2s ease, transform 0.2s ease;
     border-bottom: 2px solid transparent; padding-bottom: 2px;
 }
-.nav-links a:hover, .nav-links a.active-link {
+
+/* --- Kluczowe podkreślenia --- */
+/* Działa automatycznie, gdy klikniesz w link z #about lub #projects */
+.nav-links a:hover, 
+.nav-links a.active-link,
+.nav-links a:focus {
+    color: #ffffff !important;
+    border-bottom-color: var(--accent) !important;
+    transform: translateY(-1px);
+}
+
+/* Dzięki :target podkreśla się idealnie przy kliknięciu */
+#about:target ~ * #nav-about,
+#projects:target ~ * #nav-projects,
+#hero:target ~ * #nav-home {
     color: #ffffff !important;
     border-bottom-color: var(--accent) !important;
     transform: translateY(-1px);
@@ -63,27 +77,13 @@ body.fade-out { opacity: 0; }
 .btn-secondary { color: var(--text-muted); }
 .btn-secondary:hover { color: #ffffff; border-bottom-color: #ffffff; }
 
-/* Sekcje - dopasowane do treści */
-.features, .about { 
-    padding: 120px 0; 
-    border-top: 1px solid var(--border);
-}
-
-/* Margines dla kotwic, żeby nie chowały się pod paskiem */
-#hero, #about, #projects {
-    scroll-margin-top: 70px; 
-}
+/* Sekcje */
+.features, .about { padding: 120px 0; border-top: 1px solid var(--border); }
+#hero, #about, #projects { scroll-margin-top: 70px; }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-.card { 
-    background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 24px; 
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
-}
-.card:hover { 
-    border-color: var(--border-hover); 
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(250, 204, 21, 0.15);
-}
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 24px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.card:hover { border-color: var(--border-hover); transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 24px rgba(250, 204, 21, 0.15); }
 .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
 .card-num { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--accent); opacity: 0.7; }
 .card h3 { font-size: 1.05rem; font-weight: 600; color: #ffffff; }
