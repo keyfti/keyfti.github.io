@@ -13,28 +13,28 @@
 
     <header class="hero">
         <div class="container">
-            <!-- Terminal with close interaction -->
-            <div class="terminal" id="terminal">
+            <!-- Czysty terminal bez zamykania -->
+            <div class="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dots">
-                        <span id="close-dot"></span>
+                        <span></span>
                         <span></span>
                         <span></span>
                     </div>
                     <span class="terminal-title">lfn@local ~</span>
                 </div>
-                <div class="terminal-body" id="terminal-body">
+                <div class="terminal-body">
                     <div class="line">
                         <span class="prompt">$</span>
                         <span class="cmd">cat /etc/lfn-release</span>
                     </div>
                     
                     <div class="output-container">
-                        <!-- Tux on the left -->
+                        <!-- Tux bez szarego tła -->
                         <div class="tux-side">
                             <img src="tux.png" alt="Tux" class="tux-img">
                         </div>
-                        <!-- System Info on the right -->
+                        <!-- System Info -->
                         <div class="sys-side">
                             <div><strong>Linux From Nothing</strong> v0.1.0</div>
                             <div><strong>Build:</strong> x86_64</div>
@@ -161,51 +161,5 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const closeDot = document.getElementById('close-dot');
-            const terminalBody = document.getElementById('terminal-body');
-            const terminal = document.getElementById('terminal');
-
-            closeDot.addEventListener('click', function() {
-                // Zapobiegamy wielokrotnemu kliknięciu
-                if (terminalBody.classList.contains('closing')) return;
-                terminalBody.classList.add('closing');
-
-                // Płynne zniknięcie terminala
-                terminalBody.style.transition = 'opacity 0.4s ease';
-                terminalBody.style.opacity = '0';
-
-                // Po 0.4s pokazujemy błysk (na 500ms) z informacją
-                setTimeout(() => {
-                    terminalBody.innerHTML = '';
-                    const flashMsg = document.createElement('div');
-                    flashMsg.style.cssText = `
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        height: 100%;
-                        color: #facc15;
-                        font-family: 'Fira Code', monospace;
-                        font-size: 1.2rem;
-                        opacity: 0;
-                        transition: opacity 0.1s ease;
-                    `;
-                    flashMsg.textContent = 'Exit 0: System ready.';
-                    terminalBody.appendChild(flashMsg);
-
-                    // Błysk na 150ms (tak, aby użytkownik zdążył zobaczyć)
-                    setTimeout(() => {
-                        flashMsg.style.opacity = '1';
-                    }, 10);
-
-                    // Po 400ms całkowicie znika
-                    setTimeout(() => {
-                        terminal.style.display = 'none';
-                    }, 400);
-                }, 400);
-            });
-        });
-    </script>
 </body>
 </html>
