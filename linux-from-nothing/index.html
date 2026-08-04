@@ -13,13 +13,39 @@
 
     <header class="hero">
         <div class="container">
-            <!-- Interaktywny terminal -->
-            <div class="terminal" id="terminal">
+            <!-- Terminal z fastfetch -->
+            <div class="terminal">
                 <div class="terminal-header">
-                    <span class="terminal-title">lfn@keyfti ~</span>
-                    <span class="terminal-dots">● ● ●</span>
+                    <div class="terminal-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="terminal-title">bash</span>
                 </div>
-                <div class="terminal-body" id="terminal-body">
+                <div class="terminal-body">
+                    <div class="line">
+                        <span class="prompt">$</span>
+                        <span class="cmd">fastfetch</span>
+                    </div>
+                    <div class="line output">
+                        <pre class="logo-yellow">
+     _           _   _              
+    | |         | | (_)             
+    | |     ___ | |_ _ _ __   __ _  
+    | |    / _ \| __| | '_ \ / _` | 
+    | |___| (_) | |_| | | | | (_| | 
+    |______\___/ \__|_|_| |_|\__, | 
+                              __/ | 
+                             |___/  
+                        </pre>
+                        <div class="sysinfo">
+                            <span class="label">OS:</span> Linux From Nothing x86_64<br>
+                            <span class="label">Kernel:</span> 6.12.0-lfn<br>
+                            <span class="label">CPU:</span> AMD Ryzen 7 5800X (16) @ 3.8GHz<br>
+                            <span class="label">Memory:</span> 2048 MiB / 4096 MiB<br>
+                            <span class="label">Shell:</span> bash 5.2.42<br>
+                            <span class="label">Resolution:</span> 1920x1080
+                        </div>
+                    </div>
                     <div class="line">
                         <span class="prompt">$</span>
                         <span class="cursor">_</span>
@@ -135,88 +161,5 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const body = document.getElementById('terminal-body');
-            
-            // Tworzymy linię wprowadzania
-            function createInputLine() {
-                const line = document.createElement('div');
-                line.className = 'line input-line';
-                line.innerHTML = `<span class="prompt">$</span> <input type="text" class="terminal-input" autofocus>`;
-                body.appendChild(line);
-                
-                const input = line.querySelector('.terminal-input');
-                input.addEventListener('keydown', handleEnter);
-                input.focus();
-                return input;
-            }
-
-            function handleEnter(e) {
-                if (e.key !== 'Enter') return;
-                const input = e.target;
-                const cmd = input.value.trim();
-                if (cmd === '') return;
-
-                // Zamień input na zwykły tekst
-                input.style.display = 'none';
-                const cmdSpan = document.createElement('span');
-                cmdSpan.className = 'cmd';
-                cmdSpan.textContent = cmd;
-                input.parentNode.appendChild(cmdSpan);
-
-                // Wykonaj symulację komend
-                if (cmd === 'fastfetch') {
-                    const out = document.createElement('div');
-                    out.className = 'line output';
-                    // Logo LFN + dane systemu
-                    out.innerHTML = `
-<pre style="color: #facc15; margin: 12px 0 8px 0; font-size: 0.85rem;">
-     _           _   _              
-    | |         | | (_)             
-    | |     ___ | |_ _ _ __   __ _  
-    | |    / _ \| __| | '_ \ / _\` | 
-    | |___| (_) | |_| | | | | (_| | 
-    |______\___/ \__|_|_| |_|\__, | 
-                              __/ | 
-                             |___/  
-</pre>
-<div style="color: #a1a1aa; font-family: 'Fira Code', monospace; font-size: 0.85rem; line-height: 1.6;">
-    OS: Linux From Nothing x86_64
-    Kernel: 6.12.0-lfn
-    CPU: AMD Ryzen 7 5800X (16) @ 3.8GHz
-    Memory: 2048 MiB / 4096 MiB
-    Shell: bash 5.2.42
-    Resolution: 1920x1080
-</div>
-                    `;
-                    body.insertBefore(out, input.parentNode.nextSibling);
-                } else if (cmd === 'clear') {
-                    // Czyści terminal (zostawia tylko pierwszy prompt)
-                    while(body.firstChild) body.removeChild(body.firstChild);
-                    const firstLine = document.createElement('div');
-                    firstLine.className = 'line';
-                    firstLine.innerHTML = `<span class="prompt">$</span> <span class="cursor">_</span>`;
-                    body.appendChild(firstLine);
-                } else if (cmd === 'help') {
-                    const help = document.createElement('div');
-                    help.className = 'line output';
-                    help.innerHTML = `<span style="color:#a1a1aa;">Dostępne komendy: fastfetch, clear, help</span>`;
-                    body.insertBefore(help, input.parentNode.nextSibling);
-                } else {
-                    const err = document.createElement('div');
-                    err.className = 'line output error';
-                    err.textContent = `bash: ${cmd}: command not found`;
-                    body.insertBefore(err, input.parentNode.nextSibling);
-                }
-
-                // Nowa linia do wpisywania
-                createInputLine();
-            }
-
-            // Uruchom pierwszą linię
-            createInputLine();
-        });
-    </script>
 </body>
 </html>
