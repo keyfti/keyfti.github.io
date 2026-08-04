@@ -62,8 +62,14 @@ body.fade-out { opacity: 0; }
 .btn-secondary { color: var(--text-muted); }
 .btn-secondary:hover { color: #ffffff; border-bottom-color: #ffffff; }
 
-/* Sekcje */
-.features, .about { padding: 80px 0; border-top: 1px solid var(--border); }
+/* Sekcje - ZWIĘKSZONA WYSOKOŚĆ (min-height) */
+.features, .about { 
+    padding: 80px 0; 
+    border-top: 1px solid var(--border);
+    min-height: 70vh; /* <-- ZMIANA: Sekcje są teraz duże, łatwo je złapać */
+    display: flex;
+    align-items: center; /* Opcjonalnie, ale ładnie centruje treść w pionie */
+}
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .card { 
     background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 24px; 
