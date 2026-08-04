@@ -7,13 +7,426 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0c0c0e;
+            --surface: #141416;
+            --border: #222225;
+            --border-hover: #facc15;
+            --text-main: #f3f4f6;
+            --text-muted: #a1a1aa;
+            --text-dim: #52525b;
+            --accent: #facc15;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+            padding: 80px 20px 0;
+        }
+
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .section-label {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 32px;
+        }
+
+        .hero {
+            padding: 20px 0 80px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 4px;
+            margin-bottom: 24px;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            color: #ffffff;
+            margin-bottom: 16px;
+            line-height: 1.1;
+        }
+
+        .hero-text {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 8px 0;
+            border-bottom: 2px solid var(--border);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            color: var(--accent);
+        }
+
+        .btn-primary:hover {
+            color: #ffffff;
+            border-bottom-color: var(--accent);
+        }
+
+        .btn-secondary {
+            color: var(--text-muted);
+        }
+
+        .btn-secondary:hover {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        .terminal {
+            background: #0a0a0c;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            margin-bottom: 48px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .terminal-header {
+            background: #121214;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .terminal-title {
+            color: #666;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 400;
+            margin-left: auto;
+            margin-right: auto;
+            transform: translateX(-24px);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .terminal-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: default;
+            transition: opacity 0.2s ease;
+        }
+
+        .terminal-dots span:nth-child(1) { background: #ff5f56; cursor: pointer; }
+        .terminal-dots span:nth-child(2) { background: #ffbd2e; }
+        .terminal-dots span:nth-child(3) { background: #27c93f; }
+
+        .terminal-dots span:nth-child(1):hover { opacity: 0.7; }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            line-height: 1.8;
+            min-height: 280px;
+        }
+
+        .terminal-body .line {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .terminal-body .prompt {
+            color: var(--accent);
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .terminal-body .cmd {
+            color: #e4e4e7;
+        }
+
+        .output-container {
+            display: flex;
+            gap: 24px;
+            padding: 12px 0 8px 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .tux-side {
+            flex-shrink: 0;
+            background: transparent;
+        }
+
+        .tux-img {
+            width: 110px;
+            height: auto;
+            display: block;
+            background: none;
+        }
+
+        .sys-side {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 2;
+        }
+
+        .sys-side strong {
+            color: #e4e4e7;
+            font-weight: 600;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 18px;
+            background: var(--accent);
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .features, .steps, .faq {
+            padding: 80px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 24px;
+            transition: border-color 0.2s ease, transform 0.1s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .card-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .steps-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .step-marker {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent);
+            opacity: 0.6;
+            min-width: 24px;
+            margin-top: 2px;
+        }
+
+        .step-content h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .faq-item h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-brand {
+            font-family: var(--font-mono);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .footer-license {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+        }
+
+        .footer-license a {
+            color: var(--text-muted);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--border);
+        }
+
+        .footer-license a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 40px 12px 0;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero-text {
+                font-size: 1rem;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .step-item {
+                gap: 16px;
+            }
+            .output-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .tux-img {
+                width: 80px;
+            }
+            .sys-side {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header class="hero">
         <div class="container">
-            <!-- Terminal z zamykaniem (bez easter egga) -->
             <div class="terminal" id="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dots">
@@ -30,11 +443,9 @@
                     </div>
                     
                     <div class="output-container">
-                        <!-- Tux (obrazek, nie napis) -->
                         <div class="tux-side">
-                            <img src="tux.png" alt="Tux" class="tux-img">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Tux" class="tux-img">
                         </div>
-                        <!-- System Info (najnowsze dane) -->
                         <div class="sys-side">
                             <div><strong>Linux From Nothing</strong> v0.1.0</div>
                             <div><strong>Build:</strong> x86_64</div>
@@ -167,8 +578,6 @@
             const terminal = document.getElementById('terminal');
 
             closeDot.addEventListener('click', function() {
-                // Po prostu zamyka terminal - żadnego easter-egga, żadnych komunikatów
-                terminal.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
                 terminal.style.opacity = '0';
                 terminal.style.transform = 'scale(0.95)';
                 
