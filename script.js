@@ -27,11 +27,15 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic (#about, #projects)
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic + OD RAZU PODKREŚLENIE
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
+            // Podkreślamy kliknięty link
+            document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
+            this.classList.add('active-link');
+
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
@@ -39,31 +43,31 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. AUTOMATYCZNE PODKREŚLANIE AKTYWNEGO LINKU PODCZAS PRZEWIJANIA
+    // 4. AUTOMATYCZNE PODKREŚLANIE PODCZAS PRZEWIJANIA (NAJWAŻNIEJSZA NAPRAWA)
+    // rootMargin: '-70px' oznacza, że sekcja zaczyna być liczona 70px poniżej góry (pod paskiem)
     const sections = document.querySelectorAll('.hero, #about, #projects');
     const navLinks = document.querySelectorAll('.nav-links a');
     
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Usuń podkreślenie ze wszystkich linków
                 navLinks.forEach(link => link.classList.remove('active-link'));
                 
-                // Sprawdź, która sekcja jest widoczna
                 const id = entry.target.id;
                 if (id === 'about') {
                     document.getElementById('nav-about').classList.add('active-link');
                 } else if (id === 'projects') {
                     document.getElementById('nav-projects').classList.add('active-link');
                 } else {
-                    // Jeśli widoczny jest .hero (czyli jesteśmy na górze)
                     document.getElementById('nav-home').classList.add('active-link');
                 }
             }
         });
-    }, { threshold: 0.1 });
+    }, { 
+        threshold: 0.2,
+        rootMargin: '-70px 0px 0px 0px' // magiczna linijka, która naprawia cały problem z paskiem
+    });
 
-    // Obserwuj wszystkie sekcje
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
