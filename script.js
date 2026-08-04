@@ -1,5 +1,5 @@
 window.addEventListener('load', function() {
-    // Animacje scrollowania (Intersection Observer)
+    // Animacje scrollowania
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -12,16 +12,17 @@ window.addEventListener('load', function() {
         observer.observe(el);
     });
 
-    // Płynne przejście między podstronami (jeśli będziesz je dodawać)
-    document.querySelectorAll('.nav-links a, .hero-buttons a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && !href.startsWith('#') && !href.startsWith('http')) {
-                e.preventDefault();
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 300);
+    // Płynne przewijanie do kotwicy (Projects)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
             }
         });
     });
