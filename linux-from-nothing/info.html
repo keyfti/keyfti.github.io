@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFN - Info</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="tutorial.html" data-i18n="nav_tutorial">Tutorial</a></li>
+                <li><a href="requirements.html" data-i18n="nav_req">Requirements</a></li>
+                <li><a href="info.html" class="active-link" data-i18n="nav_info">Info</a></li>
+            </ul>
+            <div class="nav-lang" id="lang-switcher">
+                <span id="flag-pl" class="flag" title="Polski">🇵🇱</span>
+                <span id="flag-us" class="flag active" title="English">🇺🇸</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="faq fade-in visible">
+        <div class="container">
+            <div class="section-label" data-i18n="label_info">// INFO</div>
+            <h2 class="section-title" data-i18n="title_info">About the Project</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4 data-i18n="info1_title">Philosophy</h4>
+                    <p data-i18n="info1_desc">LFN is designed for deep learning of Linux internals. By building everything from source, you gain full control and understanding of the OS stack.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n="info2_title">Licensing</h4>
+                    <p data-i18n="info2_desc">The project is released under the MIT License. All source code and build scripts are free to use, modify, and distribute.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n="info3_title">Community</h4>
+                    <p data-i18n="info3_desc">LFN is an open-source initiative. Contributions, suggestions, and bug reports are welcome via the official GitHub repository.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-brand">[ lfn ]</span>
+                <span class="footer-license">MIT License · <a href="https://github.com/keyfti/linux-from-nothing">github</a></span>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
