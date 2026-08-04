@@ -27,7 +27,7 @@ body {
     font-family: var(--font-sans);
     line-height: 1.6;
     letter-spacing: -0.01em;
-    padding: 80px 20px 0;
+    padding-top: 70px; /* Rezerwa na sticky navbar */
 }
 
 .container {
@@ -36,35 +36,65 @@ body {
     padding: 0 16px;
 }
 
-/* --- Przełącznik języka --- */
-.lang-switcher {
+/* --- Szary pasek nawigacyjny (Navbar) --- */
+.navbar {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 4px 8px;
-    display: flex;
-    gap: 8px;
-    z-index: 1000;
-    cursor: default;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
 
-.lang-switcher .flag {
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+    border-bottom-color: var(--accent);
+}
+
+.nav-lang {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.nav-lang .flag {
     cursor: pointer;
     font-size: 1.2rem;
-    line-height: 1;
     opacity: 0.4;
     transition: opacity 0.2s ease;
+    line-height: 1;
 }
 
-.lang-switcher .flag.active {
+.nav-lang .flag.active {
     opacity: 1;
 }
 
-.lang-switcher .flag:hover {
+.nav-lang .flag:hover {
     opacity: 0.8;
 }
 
@@ -241,7 +271,6 @@ body {
     color: #e4e4e7;
 }
 
-/* --- Tux i Sysinfo --- */
 .output-container {
     display: flex;
     gap: 24px;
@@ -273,7 +302,7 @@ body {
     font-weight: 600;
 }
 
-/* --- Kursor (bez żadnych kresek) --- */
+/* --- Kursor (czysty żółty blok) --- */
 .cursor {
     display: inline-block;
     width: 10px;
@@ -343,6 +372,7 @@ body {
     line-height: 1.5;
 }
 
+/* --- Steps / Requirements --- */
 .steps-flow {
     display: flex;
     flex-direction: column;
@@ -383,6 +413,23 @@ body {
     font-size: 0.9rem;
 }
 
+.requirements-list {
+    list-style: none;
+    padding: 0;
+}
+
+.requirements-list li {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.requirements-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- FAQ --- */
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -438,13 +485,16 @@ footer {
 
 /* --- Responsywność --- */
 @media (max-width: 640px) {
-    .lang-switcher {
-        top: 10px;
-        right: 10px;
-        padding: 2px 6px;
-    }
     body {
-        padding: 40px 12px 0;
+        padding-top: 60px;
+    }
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .nav-links {
+        gap: 16px;
+        font-size: 0.8rem;
     }
     .hero h1 {
         font-size: 2.2rem;
