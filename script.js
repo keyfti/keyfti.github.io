@@ -27,8 +27,7 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Obsługa aktywnego linku dla kotwic (About, Projects)
-    // Najpierw obsługa kliknięcia
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic (#about, #projects)
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -37,58 +36,35 @@ window.addEventListener('load', function() {
             if (target) {
                 target.scrollIntoView({ behavior: 'smooth' });
             }
-
-            document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
-            this.classList.add('active-link');
         });
     });
 
-    // 4. Automatyczne podkreślanie podczas przewijania (scroll)
-    // Mapowanie ID sekcji na ID linku w pasku
-    const sectionLinkMap = {
-        'about': 'nav-about',
-        'projects': 'nav-projects'
-    };
-
+    // 4. AUTOMATYCZNE PODKREŚLANIE AKTYWNEGO LINKU PODCZAS PRZEWIJANIA (OBSERVER)
+    const sections = document.querySelectorAll('.hero, #about, #projects');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Kiedy sekcja staje się widoczna
-                const sectionId = entry.target.id;
-                const linkId = sectionLinkMap[sectionId];
+                // Usuń podkreślenie ze wszystkich linków
+                navLinks.forEach(link => link.classList.remove('active-link'));
                 
-                // Usuń active-link ze wszystkich linków
-                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
-                
-                // Podkreśl odpowiedni link
-                if (linkId) {
-                    document.getElementById(linkId).classList.add('active-link');
+                // Sprawdź, która sekcja jest widoczna i podkreśl odpowiedni link
+                const id = entry.target.id;
+                if (id === 'about') {
+                    document.getElementById('nav-about').classList.add('active-link');
+                } else if (id === 'projects') {
+                    document.getElementById('nav-projects').classList.add('active-link');
+                } else {
+                    // Jeśli widoczny jest .hero (czyli jesteśmy na górze)
+                    document.getElementById('nav-home').classList.add('active-link');
                 }
             }
         });
-    }, { threshold: 0.4 }); // 0.4 oznacza, że sekcja musi być widoczna w 40%, żeby się podkreśliła
+    }, { threshold: 0.3 }); // 0.3 oznacza, że sekcja musi być widoczna w 30%, aby się podkreśliła
 
-    // Obserwuj sekcje
-    document.querySelectorAll('#about, #projects').forEach(section => {
+    // Obserwuj wszystkie sekcje
+    sections.forEach(section => {
         sectionObserver.observe(section);
     });
-
-    // 5. Przywrócenie podkreślenia "Home", gdy użytkownik jest na samej górze
-    // (Sekcje o wysokości mniejszej niż 40% ekranu nie będą widoczne, więc Home zostanie podkreślony)
-    // Dodatkowo, jeśli użytkownik wróci na górę ręcznie, to też zadziała.
-    // Obserwujemy również nagłówek hero
-    const heroObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Jeśli widzimy Hero, to znaczy, że jesteśmy na górze
-                document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
-                document.getElementById('nav-home').classList.add('active-link');
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const heroElement = document.querySelector('.hero');
-    if (heroElement) {
-        heroObserver.observe(heroElement);
-    }
 });
