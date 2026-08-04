@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyfti · Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0c0c0e; --surface: #141416; --border: #222225; --border-hover: #facc15;
+            --text-main: #f3f4f6; --text-muted: #a1a1aa; --text-dim: #52525b; --accent: #facc15;
+            --font-sans: 'Inter', sans-serif; --font-mono: 'Fira Code', monospace;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg); color: var(--text-main);
+            font-family: var(--font-sans); line-height: 1.6;
+            letter-spacing: -0.01em; padding-top: 70px;
+        }
+        .container { max-width: 780px; margin: 0 auto; padding: 0 16px; }
+
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: var(--surface); border-bottom: 1px solid var(--border);
+            padding: 10px 0; z-index: 9999; box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { list-style: none; display: flex; gap: 28px; padding: 0; }
+        .nav-links a {
+            color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+            font-weight: 500; transition: color 0.2s ease;
+            border-bottom: 2px solid transparent; padding-bottom: 2px;
+        }
+        .nav-links a:hover, .nav-links a.active-link {
+            color: #ffffff; border-bottom-color: var(--accent);
+        }
+
+        /* Typo */
+        .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 6px; }
+        .section-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: #ffffff; margin-bottom: 32px; }
+
+        /* Hero */
+        .hero { padding: 20px 0 60px; }
+        .hero h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: -0.04em; color: #ffffff; margin-bottom: 16px; line-height: 1.1; }
+        .hero-text { font-size: 1.15rem; color: var(--text-muted); max-width: 600px; margin-bottom: 32px; font-weight: 400; }
+        .hero-buttons { display: flex; gap: 24px; flex-wrap: wrap; }
+        .btn-primary, .btn-secondary {
+            display: inline-block; text-decoration: none; font-weight: 600; font-size: 0.95rem; padding: 8px 0; border-bottom: 2px solid var(--border); transition: all 0.2s ease;
+        }
+        .btn-primary { color: var(--accent); }
+        .btn-primary:hover { color: #ffffff; border-bottom-color: var(--accent); }
+        .btn-secondary { color: var(--text-muted); }
+        .btn-secondary:hover { color: #ffffff; border-bottom-color: #ffffff; }
+
+        /* Projekty */
+        .projects { padding: 80px 0; border-top: 1px solid var(--border); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 24px;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        .card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+        .card h3 { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
+        .card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; margin-bottom: 16px; }
+        .card-link { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; border-bottom: 1px solid transparent; transition: border-color 0.2s ease; }
+        .card-link:hover { border-bottom-color: var(--accent); }
+
+        /* Footer */
+        footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 20px; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-brand { font-family: var(--font-mono); color: var(--text-dim); font-size: 0.8rem; }
+        .footer-license { color: var(--text-dim); font-size: 0.75rem; }
+        .footer-license a { color: var(--text-muted); text-decoration: none; border-bottom: 1px dotted var(--border); }
+        .footer-license a:hover { color: #ffffff; }
+
+        @media (max-width: 640px) {
+            body { padding-top: 60px; }
+            .nav-links { gap: 14px; }
+            .nav-links a { font-size: 0.75rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active-link">keyfti</a></li>
+                <li><a href="https://github.com/keyfti">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>keyfti</h1>
+            <p class="hero-text">
+                Low-level system tinkering, Linux builds, and open-source experiments.<br>
+                Currently building <strong>Linux From Nothing</strong> from scratch.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://github.com/keyfti" class="btn-primary">GitHub</a>
+                <a href="#projects" class="btn-secondary">Projects &darr;</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-label">// PROJECTS</div>
+            <h2 class="section-title">Stuff I've built</h2>
+            
+            <div class="grid">
+                <!-- Projekt LFN -->
+                <div class="card">
+                    <h3>Linux From Nothing</h3>
+                    <p>An independent Linux distribution built entirely from source. Kernel 7.x, custom toolchain, and a minimal user-space.</p>
+                    <a href="https://keyfti.github.io/linux-from-nothing" class="card-link">Visit project &rarr;</a>
+                </div>
+                <!-- Miejsce na kolejne projekty -->
+                <div class="card" style="opacity: 0.5; border-style: dashed;">
+                    <h3>Coming soon</h3>
+                    <p>Another low-level project or tool is in the works. Stay tuned.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-brand">[ keyfti ]</span>
+                <span class="footer-license">MIT License · <a href="https://github.com/keyfti">github</a></span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
