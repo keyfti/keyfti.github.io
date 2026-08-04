@@ -1,76 +1,79 @@
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
 
     // 1. Zamykanie terminala
     const closeDot = document.getElementById('close-dot');
     const terminal = document.getElementById('terminal');
-
     if(closeDot && terminal) {
         closeDot.addEventListener('click', function() {
             terminal.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             terminal.style.opacity = '0';
             terminal.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                terminal.style.display = 'none';
-            }, 300);
+            setTimeout(() => { terminal.style.display = 'none'; }, 300);
         });
     }
 
-    // 2. Tłumaczenia (dla wszystkich widoków)
+    // 2. Tłumaczenia (Tutorial, Requirements, Info)
     const translations = {
         'en': {
-            'nav_arch': 'Architecture', 'nav_proc': 'Process', 'nav_faq': 'Assumptions',
+            'nav_home': 'Home', 'nav_tutorial': 'Tutorial', 'nav_req': 'Requirements', 'nav_info': 'Info',
             'hero_text': 'Building an independent operating system from bare disk space.<br>Environment configuration, kernel compilation, and user-space preparation.',
-            'btn_repo': 'Open repository', 'btn_arch': 'Architecture &darr;',
+            'btn_repo': 'Open repository', 'btn_tutorial': 'Start Tutorial &rarr;',
             'os': 'OS:', 'build': 'Build: x86_64', 'kernel': 'Kernel: 7.0.0 (Stable)',
             'toolchain': 'Toolchain: GCC 14.2.0 · Glibc 2.41', 'shell': 'Shell: bash 5.2.42',
             'init': 'Init: Custom / BusyBox / OpenRC (Selectable)',
             'status': 'Status:', 'status_independent': 'Fully independent system',
-            'label_arch': '// ARCHITECTURE', 'title_arch': 'System Components',
-            'card1_title': 'Control', 'card1_desc': 'All binaries, system libraries, and boot scripts are selected and compiled manually.',
-            'card2_title': 'Toolchain', 'card2_desc': 'Independent compilation of the development toolchain (Binutils, GCC, Glibc) ensures full isolation.',
-            'card3_title': 'Kernel', 'card3_desc': 'Compilation of a monolithic Linux kernel tailored directly to the target hardware architecture.',
-            'label_proc': '// PROCESS', 'title_proc': 'Deployment Steps',
-            'step1_title': 'Environment Setup', 'step1_desc': 'Configuration of system variables, directory structure, and fetching upstream source code.',
-            'step2_title': 'Building Components', 'step2_desc': 'Compilation of the cross-compiler and preparation of basic user-space programs.',
-            'step3_title': 'System Initialization', 'step3_desc': 'Creating the init boot script, mounting file systems, and performing a test environment boot.',
-            'label_faq': '// ASSUMPTIONS', 'title_faq': 'Technical Foundations',
-            'faq1_title': 'No Package Manager', 'faq1_desc': 'The system does not rely on any existing distribution. Everything is built directly from source code.',
-            'faq2_title': 'Minimal User Space', 'faq2_desc': 'Utilizing a stripped-down set of coreutils to maintain a minimal image size.',
-            'faq3_title': 'Custom Init', 'faq3_desc': 'The system is booted by a custom init script that can be easily modified and tailored.'
+            'label_about': '// ABOUT', 'title_about': 'What is LFN?',
+            'about_desc': 'Linux From Nothing is a fully customizable, source-based Linux distribution built entirely from scratch. Unlike traditional distros, you control every binary, library, and boot script. It is designed for low-level system education and minimal embedded environments.',
+            
+            'label_tutorial': '// TUTORIAL', 'title_tutorial': 'Build Guide',
+            'tut1_title': 'Prepare the Environment', 'tut1_desc': 'Set up your build directory, download source packages, and configure system variables for the cross-compilation environment.',
+            'tut2_title': 'Compile the Toolchain', 'tut2_desc': 'Build Binutils, GCC, and Glibc from source to create an isolated cross-toolchain independent of the host system.',
+            'tut3_title': 'Build the Kernel & Init', 'tut3_desc': 'Compile a monolithic Linux kernel tailored to your hardware, create custom init scripts, and prepare the final system image.',
+            
+            'label_req': '// REQUIREMENTS', 'title_req': 'System Requirements',
+            'req1_title': 'Operating System', 'req1_desc': 'Linux distribution (or Windows WSL) with GCC, make, autoconf, and automake installed.',
+            'req2_title': 'Hardware', 'req2_desc': 'Minimum 4GB RAM (8GB recommended) and approximately 10GB of free disk space for builds.',
+            'req3_title': 'Network', 'req3_desc': 'Stable internet connection to fetch all required upstream source packages and patches.',
+            
+            'label_info': '// INFO', 'title_info': 'About the Project',
+            'info1_title': 'Philosophy', 'info1_desc': 'LFN is designed for deep learning of Linux internals. By building everything from source, you gain full control and understanding of the OS stack.',
+            'info2_title': 'Licensing', 'info2_desc': 'The project is released under the MIT License. All source code and build scripts are free to use, modify, and distribute.',
+            'info3_title': 'Community', 'info3_desc': 'LFN is an open-source initiative. Contributions, suggestions, and bug reports are welcome via the official GitHub repository.'
         },
         'pl': {
-            'nav_arch': 'Architektura', 'nav_proc': 'Proces', 'nav_faq': 'Założenia',
+            'nav_home': 'Strona główna', 'nav_tutorial': 'Poradnik', 'nav_req': 'Wymagania', 'nav_info': 'Info',
             'hero_text': 'Budowa niezależnego systemu operacyjnego od czystej przestrzeni dyskowej.<br>Konfiguracja środowiska, kompilacja jądra oraz przygotowanie przestrzeni użytkownika.',
-            'btn_repo': 'Otwórz repozytorium', 'btn_arch': 'Architektura &darr;',
+            'btn_repo': 'Otwórz repozytorium', 'btn_tutorial': 'Rozpocznij poradnik &rarr;',
             'os': 'System:', 'build': 'Architektura: x86_64', 'kernel': 'Jądro: 7.0.0 (Stable)',
             'toolchain': 'Narzędzia: GCC 14.2.0 · Glibc 2.41', 'shell': 'Powłoka: bash 5.2.42',
             'init': 'Init: Custom / BusyBox / OpenRC (Wybór)',
             'status': 'Status:', 'status_independent': 'W pełni niezależny system',
-            'label_arch': '// ARCHITEKTURA', 'title_arch': 'Komponenty systemu',
-            'card1_title': 'Kontrola', 'card1_desc': 'Wszystkie pliki binarne, biblioteki systemowe oraz skrypty rozruchowe są dobierane i kompilowane ręcznie.',
-            'card2_title': 'Toolchain', 'card2_desc': 'Niezależna kompilacja zestawu narzędzi deweloperskich (Binutils, GCC, Glibc) zapewnia pełną izolację.',
-            'card3_title': 'Jądro', 'card3_desc': 'Kompilacja monolitycznego jądra Linux dostosowanego bezpośrednio do docelowej architektury sprzętowej.',
-            'label_proc': '// PROCES', 'title_proc': 'Etapy wdrożenia',
-            'step1_title': 'Przygotowanie środowiska', 'step1_desc': 'Konfiguracja zmiennych systemowych, struktury katalogów i pobranie kodów źródłowych upstream.',
-            'step2_title': 'Budowa składników', 'step2_desc': 'Kompilacja cross-compilera oraz przygotowanie podstawowych programów przestrzeni użytkownika.',
-            'step3_title': 'Inicjalizacja systemu', 'step3_desc': 'Utworzenie skryptu rozruchowego init, montowanie systemów plików oraz testowe uruchomienie środowiska.',
-            'label_faq': '// ZAŁOŻENIA', 'title_faq': 'Fundamenty techniczne',
-            'faq1_title': 'Brak menedżera pakietów', 'faq1_desc': 'System nie bazuje na istniejących dystrybucjach. Całość powstaje poprzez bezpośrednie budowanie kodu ze źródeł.',
-            'faq2_title': 'Minimalna przestrzeń użytkownika', 'faq2_desc': 'Wykorzystanie uproszczonego zestawu narzędzi coreutils w celu zachowania minimalnego rozmiaru obrazu systemu.',
-            'faq3_title': 'Własny init', 'faq3_desc': 'System uruchamiany jest przez autorski skrypt inicjalizacyjny, który można łatwo modyfikować i dostosowywać.'
+            'label_about': '// O PROJEKCIE', 'title_about': 'Czym jest LFN?',
+            'about_desc': 'Linux From Nothing to w pełni konfigurowalna, źródłowa dystrybucja Linuxa zbudowana od zera. W przeciwieństwie do tradycyjnych dystrybucji, masz kontrolę nad każdym binarnym plikiem, biblioteką i skryptem startowym. Jest zaprojektowany do edukacji niskopoziomowej oraz minimalnych środowisk wbudowanych.',
+            
+            'label_tutorial': '// PORADNIK', 'title_tutorial': 'Przewodnik budowania',
+            'tut1_title': 'Przygotuj środowisko', 'tut1_desc': 'Skonfiguruj katalog budowania, pobierz pakiety źródłowe i ustaw zmienne systemowe dla środowiska cross-kompilacji.',
+            'tut2_title': 'Skompiluj Toolchain', 'tut2_desc': 'Zbuduj Binutils, GCC i Glibc ze źródeł, aby stworzyć izolowany toolchain niezależny od systemu hosta.',
+            'tut3_title': 'Zbuduj Jądro i Init', 'tut3_desc': 'Skompiluj monolityczne jądro Linux dostosowane do Twojego sprzętu, stwórz własne skrypty init i przygotuj końcowy obraz systemu.',
+            
+            'label_req': '// WYMAGANIA', 'title_req': 'Wymagania systemowe',
+            'req1_title': 'System operacyjny', 'req1_desc': 'Dystrybucja Linux (lub Windows WSL) z zainstalowanym GCC, make, autoconf i automake.',
+            'req2_title': 'Sprzęt', 'req2_desc': 'Minimum 4GB RAM (zalecane 8GB) oraz około 10GB wolnego miejsca na dysku na kompilacje.',
+            'req3_title': 'Sieć', 'req3_desc': 'Stabilne połączenie internetowe w celu pobrania wszystkich wymaganych pakietów źródłowych i poprawek.',
+            
+            'label_info': '// INFO', 'title_info': 'O projekcie',
+            'info1_title': 'Filozofia', 'info1_desc': 'LFN został zaprojektowany do głębokiego poznania wewnętrznych mechanizmów Linuksa. Budując wszystko ze źródeł, zyskujesz pełną kontrolę i zrozumienie stosu systemu.',
+            'info2_title': 'Licencja', 'info2_desc': 'Projekt wydany na licencji MIT. Cały kod źródłowy i skrypty budowania mogą być swobodnie używane, modyfikowane i rozpowszechniane.',
+            'info3_title': 'Społeczność', 'info3_desc': 'LFN to inicjatywa open-source. Wkłady, sugestie i zgłoszenia błędów są mile widziane za pośrednictwem oficjalnego repozytorium GitHub.'
         }
     };
 
-    // 3. Funkcja ustawiania języka (czyści i nadpisuje)
     function setLanguage(lang) {
         localStorage.setItem('lfn_lang', lang);
         document.documentElement.lang = lang;
-
-        // Flagi
         document.querySelectorAll('.nav-lang .flag').forEach(el => el.classList.remove('active'));
         document.getElementById('flag-' + lang).classList.add('active');
 
-        // Tłumaczenia
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(el => {
             const key = el.getAttribute('data-i18n');
@@ -80,48 +83,53 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 4. Obsługa kliknięcia flag
     document.getElementById('flag-pl').addEventListener('click', () => setLanguage('pl'));
     document.getElementById('flag-us').addEventListener('click', () => setLanguage('en'));
 
-    // 5. Załaduj zapisany język (domyślnie en, jeśli brak)
+    // Ustawiamy domyślnie 'en'. Polski nie odpala się przypadkiem.
     const savedLang = localStorage.getItem('lfn_lang') || 'en';
     setLanguage(savedLang);
 
-    // 6. Przełączanie widoków (SPA)
-    const views = {
-        'architecture': document.getElementById('view-architecture'),
-        'process': document.getElementById('view-process'),
-        'assumptions': document.getElementById('view-assumptions')
-    };
-    const navLinks = document.querySelectorAll('.nav-links a[data-view]');
+    // 3. EASTER EGGI
+    const terminalBody = document.getElementById('terminal-body');
+    const tux = document.getElementById('tux-click');
+    const cursor = document.getElementById('cursor-egg');
+    const badge = document.getElementById('secret-badge');
 
-    function switchView(viewName) {
-        // Ukryj wszystkie widoki
-        Object.values(views).forEach(v => v.classList.remove('active'));
-        // Pokaż wybrany
-        if(views[viewName]) views[viewName].classList.add('active');
-        
-        // Zaznacz link w pasku
-        navLinks.forEach(link => link.classList.remove('active-link'));
-        document.querySelector(`.nav-links a[data-view="${viewName}"]`)?.classList.add('active-link');
+    function addTerminalLine(text, isOutput = true) {
+        if(!terminalBody) return;
+        const line = document.createElement('div');
+        line.className = 'line';
+        if(isOutput) {
+            line.innerHTML = `<span style="color: #a1a1aa; padding-left: 20px;">${text}</span>`;
+            terminalBody.insertBefore(line, terminalBody.lastElementChild);
+        } else {
+            line.innerHTML = `<span class="prompt">$</span><span class="cmd">${text}</span>`;
+            terminalBody.insertBefore(line, terminalBody.lastElementChild);
+        }
     }
 
-    // Obsługa kliknięcia linków w pasku
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const view = this.getAttribute('data-view');
-            if(view) switchView(view);
+    // Egg 1: Kliknięcie w Tuxa
+    if(tux) {
+        tux.addEventListener('click', function() {
+            addTerminalLine('echo "Tux says: Hello from LFN! Let\'s build something great!"');
+            addTerminalLine('Tux says: Hello from LFN! Let\'s build something great!', true);
         });
-    });
+    }
 
-    // Obsługa przycisku "Architecture" w hero
-    document.querySelector('.btn-secondary[data-view="architecture"]')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        switchView('architecture');
-    });
+    // Egg 2: Kliknięcie w kursor
+    if(cursor) {
+        cursor.addEventListener('click', function() {
+            addTerminalLine('fastfetch --secret');
+            addTerminalLine('Secret mode activated! Kernel: 7.0.0-egg', true);
+        });
+    }
 
-    // Ustaw domyślny widok na początku (Architecture)
-    switchView('architecture');
+    // Egg 3: Podwójne kliknięcie na wersję (v0.1.0)
+    if(badge) {
+        badge.addEventListener('dblclick', function() {
+            addTerminalLine('cat /dev/urandom | strings | grep "LFN"');
+            addTerminalLine('404: Easter egg not found... just kidding! You found me!', true);
+        });
+    }
 });
