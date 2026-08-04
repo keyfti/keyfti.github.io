@@ -15,7 +15,9 @@
         <div class="container nav-container">
             <ul class="nav-links">
                 <li><a href="index.html" class="active-link">Home</a></li>
-                <!-- Bezpośredni link do LFN -->
+                <!-- About Me prowadzi do sekcji o Tobie -->
+                <li><a href="#about">About Me</a></li>
+                <!-- LFN Project prowadzi bezpośrednio do projektu -->
                 <li><a href="https://keyfti.github.io/linux-from-nothing/" style="color: #facc15; border-bottom-color: #facc15;">LFN Project &rarr;</a></li>
                 <li><a href="https://github.com/keyfti">GitHub</a></li>
             </ul>
@@ -33,15 +35,17 @@
                 </p>
                 <div class="hero-buttons fade-in-up delay-4">
                     <a href="https://github.com/keyfti" class="btn-primary">View GitHub &rarr;</a>
-                    <a href="https://keyfti.github.io/linux-from-nothing/" class="btn-primary">Explore LFN &darr;</a>
+                    <!-- Explore LFN prowadzi teraz do sekcji projektów na tej stronie -->
+                    <a href="#projects" class="btn-primary">Explore LFN &darr;</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section class="about fade-in-up visible">
+    <!-- Sekcja o Tobie (About Me) -->
+    <section id="about" class="about fade-in-up visible">
         <div class="container">
-            <div class="section-label">// ABOUT</div>
+            <div class="section-label">// ABOUT ME</div>
             <h2 class="section-title">Who am I?</h2>
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 600px; line-height: 1.8;">
                 I build software from the ground up. From compilers to custom kernels. 
@@ -51,7 +55,8 @@
         </div>
     </section>
 
-    <section class="features fade-in-up visible">
+    <!-- Sekcja projektów -->
+    <section id="projects" class="features fade-in-up visible">
         <div class="container">
             <div class="section-label">// PROJECTS</div>
             <h2 class="section-title">Projects</h2>
