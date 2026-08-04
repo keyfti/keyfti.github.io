@@ -3,49 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linux From Nothing (LFN)</title>
+    <title>LFN · Linux From Nothing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <header class="hero">
         <div class="container">
-            <div class="badge">v0.1.0</div>
-            <h1>Linux From Nothing</h1>
-            <p class="hero-text">
-                Budowa niezależnego systemu operacyjnego od czystej przestrzeni dyskowej.<br>
-                Konfiguracja środowiska, kompilacja jądra oraz przygotowanie przestrzeni użytkownika.
-            </p>
-            <div class="hero-buttons">
-                <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary">Otwórz repozytorium</a>
+            <!-- Terminal Window Mockup -->
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <span class="terminal-title">bash</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="line"><span class="prompt">$</span> <span class="cmd">git clone https://github.com/keyfti/linux-from-nothing</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="cmd">cd linux-from-nothing</span></div>
+                    <div class="line"><span class="prompt">$</span> <span class="cmd">./build.sh</span></div>
+                    <div class="line output">[  OK  ] Kernel compiled successfully.</div>
+                    <div class="line output">[  OK  ] User-space ready.</div>
+                    <div class="line"><span class="prompt">$</span> <span class="cursor">_</span></div>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <div class="badge">v0.1.0</div>
+                <h1>Linux From Nothing</h1>
+                <p class="hero-text">
+                    Budowa niezależnego systemu operacyjnego od zera.  
+                    Pełna kontrola nad toolchainem, kompilacją jądra i przestrzenią użytkownika.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        Repozytorium
+                    </a>
+                    <a href="#features" class="btn-secondary">Odkryj architekturę ↓</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="features">
+    <section id="features" class="features">
         <div class="container">
-            <div class="section-title">Architektura projektu</div>
+            <div class="section-label">Kernel Configuration</div>
+            <h2 class="section-title">Architektura systemu</h2>
+            
             <div class="grid">
                 <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
-                    </div>
-                    <h3>Kontrola</h3>
-                    <p>Wszystkie pliki binarne, biblioteki systemowe oraz skrypty rozruchowe są dobierane i kompilowane ręcznie.</p>
+                    <div class="card-tag">[*] KONTROLA</div>
+                    <h3>Budowa od podstaw</h3>
+                    <p>Wszystkie pliki binarne, biblioteki oraz skrypty rozruchowe są kompilowane ręcznie – bez gotowców.</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
-                    </div>
-                    <h3>Toolchain</h3>
-                    <p>Samodzielna kompilacja niezależnego zestawu narzędzi deweloperskich (Binutils, GCC, Glibc).</p>
+                    <div class="card-tag">[*] TOOLCHAIN</div>
+                    <h3>Niezależny zestaw narzędzi</h3>
+                    <p>Kompilacja własnego łańcucha narzędziowego (Binutils, GCC, Glibc) gwarantuje pełną izolację.</p>
                 </div>
                 <div class="card">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12c0-2.33.796-4.47 2.14-6.17L12 12z"></path><path d="M12 22a10 10 0 0 1-7.86-16.17l4.43 4.44a5 5 0 1 0 6.86 0l4.43-4.44A10 10 0 0 1 12 22z"></path></svg>
-                    </div>
-                    <h3>Kernel</h3>
-                    <p>Kompilacja monolitycznego jądra Linux dostosowanego bezpośrednio pod docelową architekturę sprzętową.</p>
+                    <div class="card-tag">[*] KERNEL</div>
+                    <h3>Jądro monolityczne</h3>
+                    <p>Kompilacja jądra Linux dostosowanego architekturą i parametrami pod konkretny sprzęt docelowy.</p>
                 </div>
             </div>
         </div>
@@ -53,44 +76,61 @@
 
     <section class="steps">
         <div class="container">
-            <div class="section-title">Etapy wdrożenia</div>
-            <div class="steps-flow">
-                <div class="step-item">
-                    <div class="step-number">1</div>
-                    <div class="step-info">
-                        <h3>Przygotowanie środowiska</h3>
-                        <p>Konfiguracja zmiennych systemowych, struktury katalogów i pobranie kodów źródłowych upstream.</p>
+            <div class="section-label">Build Pipeline</div>
+            <h2 class="section-title">Etapy wdrożenia</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">01</div>
+                    <div class="timeline-content">
+                        <h3>Środowisko</h3>
+                        <p>Konfiguracja zmiennych, struktury katalogów oraz pobranie źródeł upstream.</p>
                     </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-number">2</div>
-                    <div class="step-info">
-                        <h3>Budowa składników</h3>
-                        <p>Kompilacja cross-compilera oraz przygotowanie podstawowych programów przestrzeni użytkownika.</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker">02</div>
+                    <div class="timeline-content">
+                        <h3>Składniki systemu</h3>
+                        <p>Kompilacja cross-compilera i przygotowanie podstawowych programów przestrzeni użytkownika.</p>
                     </div>
                 </div>
-                <div class="step-item">
-                    <div class="step-number">3</div>
-                    <div class="step-info">
-                        <h3>Inicjalizacja systemu</h3>
-                        <p>Utworzenie skryptu rozruchowego init, montowanie systemów plików oraz testowe uruchomienie środowiska.</p>
+                <div class="timeline-item">
+                    <div class="timeline-marker">03</div>
+                    <div class="timeline-content">
+                        <h3>Inicjalizacja</h3>
+                        <p>Utworzenie skryptu `init`, montowanie systemów plików oraz testowe uruchomienie obrazu.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="faq">
+    <section class="philosophy">
         <div class="container">
-            <div class="section-title">Założenia techniczne</div>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h4>Brak menedżera pakietów</h4>
-                    <p>System nie bazuje na istniejących dystrybucjach. Całość powstaje poprzez bezpośrednie budowanie kodu ze źródeł.</p>
+            <div class="section-label">Assumptions</div>
+            <h2 class="section-title">Założenia techniczne</h2>
+            
+            <div class="philosophy-grid">
+                <div class="philo-item">
+                    <div class="philo-icon">──</div>
+                    <div class="philo-content">
+                        <h4>Brak menedżera pakietów</h4>
+                        <p>System nie opiera się na żadnej istniejącej dystrybucji. Całość powstaje wyłącznie ze źródeł.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h4>Przestrzeń użytkownika</h4>
-                    <p>Wykorzystanie uproszczonego zestawu narzędzi coreutils w celu zachowania minimalnego rozmiaru obrazu systemu.</p>
+                <div class="philo-item">
+                    <div class="philo-icon">──</div>
+                    <div class="philo-content">
+                        <h4>Minimalna przestrzeń użytkownika</h4>
+                        <p>Środowisko bazuje na okrojonym zestawie `coreutils` w celu zachowania niewielkiego rozmiaru obrazu.</p>
+                    </div>
+                </div>
+                <div class="philo-item">
+                    <div class="philo-icon">──</div>
+                    <div class="philo-content">
+                        <h4>Własny init</h4>
+                        <p>System uruchamiany jest przez autorski skrypt inicjalizacyjny, który można łatwo modyfikować.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,7 +138,10 @@
 
     <footer>
         <div class="container">
-            <p>Licencja MIT</p>
+            <div class="footer-content">
+                <span class="footer-brand">linux-from-nothing</span>
+                <span class="footer-license">Licencja MIT · <a href="https://github.com/keyfti/linux-from-nothing">github</a></span>
+            </div>
         </div>
     </footer>
 
