@@ -14,6 +14,7 @@
     --text-dim: #52525b;
     --accent: #facc15;
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'Fira Code', monospace;
 }
 
 html {
@@ -37,7 +38,7 @@ body {
 
 /* --- Typografia --- */
 .section-label {
-    font-family: 'Inter', monospace;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.05em;
@@ -64,7 +65,7 @@ body {
     background: var(--surface);
     border: 1px solid var(--border);
     color: var(--accent);
-    font-family: 'Inter', monospace;
+    font-family: var(--font-mono);
     font-size: 0.75rem;
     font-weight: 600;
     padding: 4px 14px;
@@ -124,7 +125,108 @@ body {
     border-bottom-color: #ffffff;
 }
 
-/* --- Features (Architektura) --- */
+/* --- Terminal --- */
+.terminal {
+    background: #0a0a0c;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 48px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+.terminal-header {
+    background: #121214;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.terminal-title {
+    color: #666;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.terminal-dots {
+    color: #555;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.terminal-body {
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    min-height: 240px;
+}
+
+.terminal-body .line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.terminal-body .prompt {
+    color: var(--accent);
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.terminal-body .cmd {
+    color: #e4e4e7;
+}
+
+.terminal-body .output {
+    color: var(--text-muted);
+    padding-left: 20px;
+    width: 100%;
+}
+
+.terminal-body .output.error {
+    color: #ff6b6b;
+}
+
+.terminal-body .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 18px;
+    background: var(--accent);
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Styl dla inputa wewnątrz terminala */
+.input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #e4e4e7;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    width: 100%;
+    padding: 0;
+    caret-color: var(--accent);
+}
+
+.terminal-input::placeholder {
+    color: transparent;
+}
+
+/* --- Features --- */
 .features, .steps, .faq {
     padding: 80px 0;
     border-top: 1px solid var(--border);
@@ -157,7 +259,7 @@ body {
 }
 
 .card-num {
-    font-family: 'Inter', monospace;
+    font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 700;
     color: var(--accent);
@@ -176,7 +278,7 @@ body {
     line-height: 1.5;
 }
 
-/* --- Steps (Etapy) --- */
+/* --- Steps --- */
 .steps-flow {
     display: flex;
     flex-direction: column;
@@ -196,7 +298,7 @@ body {
 }
 
 .step-marker {
-    font-family: 'Inter', monospace;
+    font-family: var(--font-mono);
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--accent);
@@ -217,7 +319,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- FAQ (Założenia) --- */
+/* --- FAQ --- */
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -252,7 +354,7 @@ footer {
 }
 
 .footer-brand {
-    font-family: 'Inter', monospace;
+    font-family: var(--font-mono);
     color: var(--text-dim);
     font-size: 0.8rem;
 }
