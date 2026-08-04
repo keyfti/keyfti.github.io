@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
         observer.observe(el);
     });
 
-    // 2. Płynne przejście między podstronami
+    // 2. Płynne przejście między podstronami (zewnętrzne linki)
     document.querySelectorAll('.nav-links a, .hero-buttons a').forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -27,11 +27,12 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic + podkreślenie
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
+            // Natychmiast podkreślamy kliknięty link
             document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
             this.classList.add('active-link');
 
@@ -42,32 +43,34 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. NIEZAWODNY LISTENER NA SCROLL (bez Math.abs, stabilny)
+    // 4. ALGORYTM SKANOWANIA (NIEZAWODNY, BEZ SKAKANIA)
     function updateActiveLinkOnScroll() {
         const sections = document.querySelectorAll('.hero, #about, #projects');
         const navLinks = document.querySelectorAll('.nav-links a');
-        let currentId = 'nav-home';
-        let closestTop = 9999;
+        let activeId = 'nav-home'; // Domyślnie Home
 
-        sections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            // Szukamy tylko tych sekcji, które są widoczne na ekranie (bottom > 0)
-            // i znajdują się w okolicach góry (top < 120 - wysokość paska)
-            if (rect.bottom > 0 && rect.top < 120) {
-                // Wybieramy tę, która jest najbliżej góry (ma najmniejszy rect.top)
-                if (rect.top < closestTop) {
-                    closestTop = rect.top;
+        // Sprawdzamy, czy jesteśmy na samej górze (w sekcji Hero)
+        const heroRect = document.querySelector('.hero').getBoundingClientRect();
+        if (heroRect.top >= -10 && heroRect.top < 70) {
+            activeId = 'nav-home';
+        } else {
+            // Jeśli nie jesteśmy na górze, szukamy która sekcja jest widoczna
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                // Jeśli górna krawędź sekcji jest widoczna (czyli mniejsza niż 1px od góry ekranu)
+                // lub sekcja jest już widoczna na ekranie
+                if (rect.top < 70 && rect.bottom > 0) {
                     const id = section.id;
-                    if (id === 'about') currentId = 'nav-about';
-                    else if (id === 'projects') currentId = 'nav-projects';
-                    else currentId = 'nav-home';
+                    if (id === 'about') activeId = 'nav-about';
+                    else if (id === 'projects') activeId = 'nav-projects';
+                    else activeId = 'nav-home';
                 }
-            }
-        });
+            });
+        }
 
         // Usuń wszystkie podkreślenia i podkreśl właściwy link
         navLinks.forEach(link => link.classList.remove('active-link'));
-        document.getElementById(currentId).classList.add('active-link');
+        document.getElementById(activeId).classList.add('active-link');
     }
 
     window.addEventListener('scroll', updateActiveLinkOnScroll);
