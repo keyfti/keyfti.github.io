@@ -28,7 +28,8 @@ body.fade-out { opacity: 0; }
     border-bottom: 2px solid transparent; padding-bottom: 2px;
 }
 .nav-links a:hover, .nav-links a.active-link {
-    color: #ffffff; border-bottom-color: var(--accent);
+    color: #ffffff !important;
+    border-bottom-color: var(--accent) !important;
     transform: translateY(-1px);
 }
 
@@ -62,9 +63,9 @@ body.fade-out { opacity: 0; }
 .btn-secondary { color: var(--text-muted); }
 .btn-secondary:hover { color: #ffffff; border-bottom-color: #ffffff; }
 
-/* Sekcje - DOPASOWANE DO TREŚCI, BEZ MIN-HEIGHT */
+/* Sekcje - dopasowane do treści */
 .features, .about { 
-    padding: 120px 0; /* Zwiększony odstęp, ale bez wymuszania wysokości */
+    padding: 120px 0; 
     border-top: 1px solid var(--border);
 }
 
