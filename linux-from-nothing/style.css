@@ -13,7 +13,7 @@
     --text-muted: #a1a1aa;
     --text-dim: #52525b;
     --accent: #facc15;
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-sans: 'Inter', sans-serif;
     --font-mono: 'Fira Code', monospace;
 }
 
@@ -36,6 +36,51 @@ body {
     padding: 0 16px;
 }
 
+/* --- Przełącznik języka --- */
+.lang-switcher {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 8px;
+    display: flex;
+    gap: 8px;
+    z-index: 1000;
+    cursor: default;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.lang-switcher .flag {
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0.4;
+    transition: opacity 0.2s ease;
+}
+
+.lang-switcher .flag.active {
+    opacity: 1;
+}
+
+.lang-switcher .flag:hover {
+    opacity: 0.8;
+}
+
+/* --- Animacje przewijania (fade-in) --- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Typografia --- */
 .section-label {
     font-family: var(--font-mono);
     font-size: 0.8rem;
@@ -53,6 +98,7 @@ body {
     margin-bottom: 32px;
 }
 
+/* --- Hero --- */
 .hero {
     padding: 20px 0 80px;
 }
@@ -123,7 +169,7 @@ body {
     border-bottom-color: #ffffff;
 }
 
-/* Terminal bez żadnego zamykania */
+/* --- Terminal --- */
 .terminal {
     background: #0a0a0c;
     border: 1px solid var(--border);
@@ -131,6 +177,7 @@ body {
     margin-bottom: 48px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .terminal-header {
@@ -164,9 +211,11 @@ body {
     cursor: default;
 }
 
-.terminal-dots span:nth-child(1) { background: #ff5f56; }
+.terminal-dots span:nth-child(1) { background: #ff5f56; cursor: pointer; }
 .terminal-dots span:nth-child(2) { background: #ffbd2e; }
 .terminal-dots span:nth-child(3) { background: #27c93f; }
+
+.terminal-dots span:nth-child(1):hover { opacity: 0.7; }
 
 .terminal-body {
     padding: 24px;
@@ -192,7 +241,7 @@ body {
     color: #e4e4e7;
 }
 
-/* Tux bez szarego tła */
+/* --- Tux i Sysinfo --- */
 .output-container {
     display: flex;
     gap: 24px;
@@ -203,14 +252,13 @@ body {
 
 .tux-side {
     flex-shrink: 0;
-    background: transparent !important; /* Usuwa ewentualne szare tło */
 }
 
 .tux-img {
     width: 110px;
     height: auto;
     display: block;
-    background: none !important; /* Zapewnia przezroczystość PNG */
+    image-rendering: pixelated;
 }
 
 .sys-side {
@@ -225,11 +273,16 @@ body {
     font-weight: 600;
 }
 
+/* --- Kursor (bez żadnych kresek) --- */
 .cursor {
     display: inline-block;
     width: 10px;
     height: 18px;
     background: var(--accent);
+    border: none;
+    border-bottom: none;
+    outline: none;
+    box-shadow: none;
     animation: blink 1s step-end infinite;
     margin-left: 2px;
 }
@@ -238,6 +291,7 @@ body {
     50% { opacity: 0; }
 }
 
+/* --- Sekcje --- */
 .features, .steps, .faq {
     padding: 80px 0;
     border-top: 1px solid var(--border);
@@ -382,7 +436,13 @@ footer {
     color: #ffffff;
 }
 
+/* --- Responsywność --- */
 @media (max-width: 640px) {
+    .lang-switcher {
+        top: 10px;
+        right: 10px;
+        padding: 2px 6px;
+    }
     body {
         padding: 40px 12px 0;
     }
