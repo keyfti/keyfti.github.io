@@ -27,7 +27,7 @@ body {
     font-family: var(--font-sans);
     line-height: 1.6;
     letter-spacing: -0.01em;
-    padding-top: 70px; /* Rezerwa na sticky navbar */
+    padding-top: 65px; /* Rezerwa na porządny navbar */
 }
 
 .container {
@@ -36,7 +36,7 @@ body {
     padding: 0 16px;
 }
 
-/* --- Szary pasek nawigacyjny (Navbar) --- */
+/* --- Poprawiony pasek nawigacyjny --- */
 .navbar {
     position: fixed;
     top: 0;
@@ -44,10 +44,9 @@ body {
     width: 100%;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 12px 0;
+    padding: 10px 0;
     z-index: 9999;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
 .nav-container {
@@ -59,16 +58,18 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 24px;
+    gap: 28px;
+    padding: 0;
 }
 
 .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     transition: color 0.2s ease;
-    border-bottom: 1px solid transparent;
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
 }
 
 .nav-links a:hover {
@@ -302,7 +303,7 @@ body {
     font-weight: 600;
 }
 
-/* --- Kursor (czysty żółty blok) --- */
+/* --- Kursor (czysty żółty blok, zero kresek) --- */
 .cursor {
     display: inline-block;
     width: 10px;
@@ -372,7 +373,6 @@ body {
     line-height: 1.5;
 }
 
-/* --- Steps / Requirements --- */
 .steps-flow {
     display: flex;
     flex-direction: column;
@@ -413,23 +413,6 @@ body {
     font-size: 0.9rem;
 }
 
-.requirements-list {
-    list-style: none;
-    padding: 0;
-}
-
-.requirements-list li {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-}
-
-.requirements-list li:last-child {
-    border-bottom: none;
-}
-
-/* --- FAQ --- */
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -486,15 +469,17 @@ footer {
 /* --- Responsywność --- */
 @media (max-width: 640px) {
     body {
-        padding-top: 60px;
+        padding-top: 55px;
     }
     .nav-container {
-        flex-wrap: wrap;
-        gap: 8px;
+        flex-wrap: nowrap;
     }
     .nav-links {
-        gap: 16px;
-        font-size: 0.8rem;
+        gap: 14px;
+        font-size: 0.75rem;
+    }
+    .nav-links a {
+        font-size: 0.75rem;
     }
     .hero h1 {
         font-size: 2.2rem;
