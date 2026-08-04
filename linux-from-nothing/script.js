@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- 1. Zamykanie terminala ---
+    // --- 1. Zamykanie terminala (zero easter-eggów) ---
     const closeDot = document.getElementById('close-dot');
     const terminal = document.getElementById('terminal');
 
     closeDot.addEventListener('click', function() {
+        terminal.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         terminal.style.opacity = '0';
         terminal.style.transform = 'scale(0.95)';
         setTimeout(() => {
@@ -12,12 +13,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 300);
     });
 
-    // --- 2. Tłumaczenia (Polski / Angielski) ---
+    // --- 2. Tłumaczenia (tylko dla Twoich oryginalnych sekcji) ---
     const translations = {
         'en': {
-            'nav_req': 'Requirements',
-            'nav_tut': 'Tutorial',
-            'nav_info': 'Info',
+            'nav_arch': 'Architecture',
+            'nav_proc': 'Process',
+            'nav_faq': 'Assumptions',
             'hero_text': 'Building an independent operating system from bare disk space.<br>Environment configuration, kernel compilation, and user-space preparation.',
             'btn_repo': 'Open repository',
             'btn_arch': 'Architecture &darr;',
@@ -29,8 +30,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'card2_desc': 'Independent compilation of the development toolchain (Binutils, GCC, Glibc) ensures full isolation.',
             'card3_title': 'Kernel',
             'card3_desc': 'Compilation of a monolithic Linux kernel tailored directly to the target hardware architecture.',
-            'label_process': '// PROCESS',
-            'title_process': 'Deployment Steps',
+            'label_proc': '// PROCESS',
+            'title_proc': 'Deployment Steps',
             'step1_title': 'Environment Setup',
             'step1_desc': 'Configuration of system variables, directory structure, and fetching upstream source code.',
             'step2_title': 'Building Components',
@@ -52,29 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
             'shell': 'Shell: bash 5.2.42',
             'init': 'Init: Custom / BusyBox / OpenRC (Selectable)',
             'status': 'Status:',
-            'status_independent': 'Fully independent system',
-            'label_req': '// REQUIREMENTS',
-            'title_req': 'System Requirements',
-            'req1': 'Linux distribution (or Windows WSL) with GCC, make, autoconf.',
-            'req2': 'Minimum 4GB RAM (8GB recommended).',
-            'req3': 'Around 10GB of free disk space.',
-            'req4': 'Internet access for downloading source packages.',
-            'label_tut': '// TUTORIAL',
-            'title_tut': 'Build Guide',
-            'tut1_title': 'Step 1: Prepare the environment',
-            'tut1_desc': 'Set up your build directory, download sources, and configure variables.',
-            'tut2_title': 'Step 2: Compile the toolchain',
-            'tut2_desc': 'Build Binutils, GCC, and Glibc to create a cross-compilation environment.',
-            'tut3_title': 'Step 3: Build the system',
-            'tut3_desc': 'Compile the kernel, core utilities, and finally the init script.',
-            'label_info': '// INFO',
-            'title_info': 'About the Project',
-            'info_desc': 'Linux From Nothing is a passion project designed to teach low-level system programming and provide a lightweight, fully customizable OS image.'
+            'status_independent': 'Fully independent system'
         },
         'pl': {
-            'nav_req': 'Wymagania',
-            'nav_tut': 'Poradnik',
-            'nav_info': 'Info',
+            'nav_arch': 'Architektura',
+            'nav_proc': 'Proces',
+            'nav_faq': 'Założenia',
             'hero_text': 'Budowa niezależnego systemu operacyjnego od czystej przestrzeni dyskowej.<br>Konfiguracja środowiska, kompilacja jądra oraz przygotowanie przestrzeni użytkownika.',
             'btn_repo': 'Otwórz repozytorium',
             'btn_arch': 'Architektura &darr;',
@@ -86,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'card2_desc': 'Niezależna kompilacja zestawu narzędzi deweloperskich (Binutils, GCC, Glibc) zapewnia pełną izolację.',
             'card3_title': 'Jądro',
             'card3_desc': 'Kompilacja monolitycznego jądra Linux dostosowanego bezpośrednio do docelowej architektury sprzętowej.',
-            'label_process': '// PROCES',
-            'title_process': 'Etapy wdrożenia',
+            'label_proc': '// PROCES',
+            'title_proc': 'Etapy wdrożenia',
             'step1_title': 'Przygotowanie środowiska',
             'step1_desc': 'Konfiguracja zmiennych systemowych, struktury katalogów i pobranie kodów źródłowych upstream.',
             'step2_title': 'Budowa składników',
@@ -109,24 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             'shell': 'Powłoka: bash 5.2.42',
             'init': 'Init: Custom / BusyBox / OpenRC (Wybór)',
             'status': 'Status:',
-            'status_independent': 'W pełni niezależny system',
-            'label_req': '// WYMAGANIA',
-            'title_req': 'Wymagania systemowe',
-            'req1': 'Dystrybucja Linux (lub WSL) z GCC, make, autoconf.',
-            'req2': 'Minimum 4GB RAM (zalecane 8GB).',
-            'req3': 'Około 10GB wolnego miejsca na dysku.',
-            'req4': 'Dostęp do internetu w celu pobrania pakietów źródłowych.',
-            'label_tut': '// PORADNIK',
-            'title_tut': 'Przewodnik budowania',
-            'tut1_title': 'Krok 1: Przygotuj środowisko',
-            'tut1_desc': 'Skonfiguruj katalog budowania, pobierz źródła i ustaw zmienne.',
-            'tut2_title': 'Krok 2: Skompiluj toolchain',
-            'tut2_desc': 'Zbuduj Binutils, GCC i Glibc, aby stworzyć środowisko cross-kompilacji.',
-            'tut3_title': 'Krok 3: Zbuduj system',
-            'tut3_desc': 'Skompiluj jądro, podstawowe narzędzia i na końcu skrypt init.',
-            'label_info': '// INFO',
-            'title_info': 'O projekcie',
-            'info_desc': 'Linux From Nothing to projekt hobbystyczny, mający na celu nauczenie programowania niskopoziomowego oraz dostarczenie lekkiego, w pełni konfigurowalnego obrazu systemu.'
+            'status_independent': 'W pełni niezależny system'
         }
     };
 
@@ -135,11 +102,9 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('lfn_lang', lang);
         document.documentElement.lang = lang;
         
-        // Aktualizuj klasy flag
         document.querySelectorAll('.nav-lang .flag').forEach(el => el.classList.remove('active'));
         document.getElementById('flag-' + lang).classList.add('active');
 
-        // Przetłumacz elementy
         const elements = document.querySelectorAll('[data-i18n]');
         elements.forEach(el => {
             const key = el.getAttribute('data-i18n');
