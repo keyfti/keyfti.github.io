@@ -71,9 +71,9 @@ body.fade-out { opacity: 0; }
     align-items: center; 
 }
 
-/* --- KLUCZOWA NAPRAWA: scroll-margin-top --- */
+/* --- NAPRAWA: Idealny margines pod pasek --- */
 #about, #projects, .hero {
-    scroll-margin-top: 80px; /* Zatrzymuje się 80px przed krawędzią, idealnie pod paskiem */
+    scroll-margin-top: 70px; /* Zatrzymuje się dokładnie 70px przed górą (wysokość paska) */
 }
 
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
@@ -99,6 +99,7 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 20px;
 
 @media (max-width: 640px) {
     body { padding-top: 60px; }
+    #about, #projects, .hero { scroll-margin-top: 60px; } /* Dostosowanie dla małych ekranów */
     .nav-links { gap: 14px; }
     .nav-links a { font-size: 0.75rem; }
     .hero h1 { font-size: 2.2rem; }
