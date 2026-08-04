@@ -1,6 +1,6 @@
 window.addEventListener('load', function() {
-    
-    // 1. Animacje scrollowania (dla fade-in-up)
+
+    // 1. Animacje scrollowania (fade-in-up)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -27,12 +27,15 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic
+    // 3. Obsługa kotwic (kliknięcie w About / Projects)
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('#hero, #about, #projects');
+
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            // Od razu podkreślamy kliknięty link
-            document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
+            // Natychmiast podkreślamy kliknięty link
+            navLinks.forEach(l => l.classList.remove('active-link'));
             this.classList.add('active-link');
 
             const target = document.querySelector(this.getAttribute('href'));
@@ -42,33 +45,36 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. NAJWAŻNIEJSZE: Obserwator dla podkreśleń (BEZ SKAKANIA)
-    const sections = document.querySelectorAll('#hero, #about, #projects');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Usuń podkreślenie ze wszystkich linków
-                navLinks.forEach(link => link.classList.remove('active-link'));
-                
-                // Podkreśl ten, który pasuje do widocznej sekcji
-                const id = entry.target.id;
-                if (id === 'about') {
-                    document.getElementById('nav-about').classList.add('active-link');
-                } else if (id === 'projects') {
-                    document.getElementById('nav-projects').classList.add('active-link');
-                } else if (id === 'hero') {
-                    document.getElementById('nav-home').classList.add('active-link');
-                }
+    // 4. NIEZAWODNY LISTENER SCROLL (oparty na odległości od góry, bez skakania)
+    let currentActiveId = 'nav-home'; // Zapamiętujemy aktualnie podkreślony link
+
+    function updateActiveLink() {
+        let activeId = 'nav-home'; // Domyślnie Home
+        let minTop = 9999;
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            // Szukamy sekcji, której górna krawędź jest najbliżej góry ekranu (ale nie wyżej niż 150px, żeby nie było przeskoków)
+            // rect.top >= -150 warunek zapobiega podświetlaniu, gdy sekcja zniknęła za górną krawędzią
+            if (rect.top > -150 && rect.top < minTop) {
+                minTop = rect.top;
+                const id = section.id;
+                if (id === 'hero') activeId = 'nav-home';
+                else if (id === 'about') activeId = 'nav-about';
+                else if (id === 'projects') activeId = 'nav-projects';
             }
         });
-    }, { 
-        rootMargin: '-70px 0px 0px 0px', // Magiczna linijka – liczy sekcję dopiero 70px poniżej góry
-        threshold: 0 // Działa w momencie, gdy sekcja dotknie tej linii – ZERO SKAKANIA
-    });
 
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+        // Jeśli zmienił się aktywny link, dopiero wtedy aktualizuj klasę
+        if (currentActiveId !== activeId) {
+            currentActiveId = activeId;
+            navLinks.forEach(l => l.classList.remove('active-link'));
+            document.getElementById(activeId).classList.add('active-link');
+        }
+    }
+
+    // Uruchom przy każdym scrollu
+    window.addEventListener('scroll', updateActiveLink);
+    // Uruchom od razu po załadowaniu
+    updateActiveLink();
 });
