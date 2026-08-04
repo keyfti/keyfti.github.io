@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <!-- Szary pasek nawigacyjny (góra) -->
+    <!-- Porządny szary pasek nawigacyjny -->
     <nav class="navbar">
         <div class="container nav-container">
             <ul class="nav-links">
-                <li><a href="#requirements" data-i18n="nav_req">Requirements</a></li>
-                <li><a href="#tutorial" data-i18n="nav_tut">Tutorial</a></li>
-                <li><a href="#info" data-i18n="nav_info">Info</a></li>
+                <li><a href="#features" data-i18n="nav_arch">Architecture</a></li>
+                <li><a href="#steps" data-i18n="nav_proc">Process</a></li>
+                <li><a href="#faq" data-i18n="nav_faq">Assumptions</a></li>
             </ul>
             <div class="nav-lang" id="lang-switcher">
                 <span id="flag-pl" class="flag" title="Polski">🇵🇱</span>
@@ -111,46 +111,56 @@
         </div>
     </section>
 
-    <!-- Dodane sekcje dla paska nawigacji -->
-    <section id="requirements" class="steps fade-in">
+    <section id="steps" class="steps fade-in">
         <div class="container">
-            <div class="section-label" data-i18n="label_req">// REQUIREMENTS</div>
-            <h2 class="section-title" data-i18n="title_req">System Requirements</h2>
-            <ul class="requirements-list">
-                <li data-i18n="req1">Linux distribution (or Windows WSL) with GCC, make, autoconf.</li>
-                <li data-i18n="req2">Minimum 4GB RAM (8GB recommended).</li>
-                <li data-i18n="req3">Around 10GB of free disk space.</li>
-                <li data-i18n="req4">Internet access for downloading source packages.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="tutorial" class="faq fade-in">
-        <div class="container">
-            <div class="section-label" data-i18n="label_tut">// TUTORIAL</div>
-            <h2 class="section-title" data-i18n="title_tut">Build Guide</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h4 data-i18n="tut1_title">Step 1: Prepare the environment</h4>
-                    <p data-i18n="tut1_desc">Set up your build directory, download sources, and configure variables.</p>
+            <div class="section-label" data-i18n="label_proc">// PROCESS</div>
+            <h2 class="section-title" data-i18n="title_proc">Deployment Steps</h2>
+            
+            <div class="steps-flow">
+                <div class="step-item">
+                    <div class="step-marker">1</div>
+                    <div class="step-content">
+                        <h3 data-i18n="step1_title">Environment Setup</h3>
+                        <p data-i18n="step1_desc">Configuration of system variables, directory structure, and fetching upstream source code.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h4 data-i18n="tut2_title">Step 2: Compile the toolchain</h4>
-                    <p data-i18n="tut2_desc">Build Binutils, GCC, and Glibc to create a cross-compilation environment.</p>
+                <div class="step-item">
+                    <div class="step-marker">2</div>
+                    <div class="step-content">
+                        <h3 data-i18n="step2_title">Building Components</h3>
+                        <p data-i18n="step2_desc">Compilation of the cross-compiler and preparation of basic user-space programs.</p>
+                    </div>
                 </div>
-                <div class="faq-item">
-                    <h4 data-i18n="tut3_title">Step 3: Build the system</h4>
-                    <p data-i18n="tut3_desc">Compile the kernel, core utilities, and finally the init script.</p>
+                <div class="step-item">
+                    <div class="step-marker">3</div>
+                    <div class="step-content">
+                        <h3 data-i18n="step3_title">System Initialization</h3>
+                        <p data-i18n="step3_desc">Creating the init boot script, mounting file systems, and performing a test environment boot.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="info" class="features fade-in">
+    <section id="faq" class="faq fade-in">
         <div class="container">
-            <div class="section-label" data-i18n="label_info">// INFO</div>
-            <h2 class="section-title" data-i18n="title_info">About the Project</h2>
-            <p data-i18n="info_desc" style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px;">Linux From Nothing is a passion project designed to teach low-level system programming and provide a lightweight, fully customizable OS image.</p>
+            <div class="section-label" data-i18n="label_faq">// ASSUMPTIONS</div>
+            <h2 class="section-title" data-i18n="title_faq">Technical Foundations</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4 data-i18n="faq1_title">No Package Manager</h4>
+                    <p data-i18n="faq1_desc">The system does not rely on any existing distribution. Everything is built directly from source code.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n="faq2_title">Minimal User Space</h4>
+                    <p data-i18n="faq2_desc">Utilizing a stripped-down set of coreutils to maintain a minimal image size.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 data-i18n="faq3_title">Custom Init</h4>
+                    <p data-i18n="faq3_desc">The system is booted by a custom init script that can be easily modified and tailored.</p>
+                </div>
+            </div>
         </div>
     </section>
 
