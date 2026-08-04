@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,33 +13,36 @@
 
     <header class="hero">
         <div class="container">
-            <!-- Terminal z Tuxem i fastfetch -->
-            <div class="terminal">
+            <!-- Terminal with close interaction -->
+            <div class="terminal" id="terminal">
                 <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span id="close-dot"></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <span class="terminal-title">lfn@local ~</span>
-                    <span class="terminal-dots">● ● ●</span>
                 </div>
-                <div class="terminal-body">
+                <div class="terminal-body" id="terminal-body">
                     <div class="line">
                         <span class="prompt">$</span>
-                        <span class="cmd">fastfetch --logo tux</span>
+                        <span class="cmd">cat /etc/lfn-release</span>
                     </div>
                     
-                    <div class="fastfetch-output">
-                        <!-- Tux po lewej -->
-                        <div class="tux-container">
+                    <div class="output-container">
+                        <!-- Tux on the left -->
+                        <div class="tux-side">
                             <img src="tux.png" alt="Tux" class="tux-img">
                         </div>
-                        <!-- Specyfikacja systemu po prawej -->
-                        <div class="sys-info">
-                            <div><strong>OS:</strong> Linux From Nothing x86_64</div>
-                            <div><strong>Host:</strong> localhost</div>
+                        <!-- System Info on the right -->
+                        <div class="sys-side">
+                            <div><strong>Linux From Nothing</strong> v0.1.0</div>
+                            <div><strong>Build:</strong> x86_64</div>
                             <div><strong>Kernel:</strong> 6.12.0-lfn</div>
-                            <div><strong>CPU:</strong> AMD Ryzen 7 5800X (16) @ 3.8GHz</div>
-                            <div><strong>Memory:</strong> 1805 MiB / 4096 MiB</div>
-                            <div><strong>Shell:</strong> bash 5.2.42</div>
-                            <div><strong>Resolution:</strong> 1920x1080</div>
-                            <div><strong>Terminal:</strong> Linux Console</div>
+                            <div><strong>Toolchain:</strong> GCC 14.2.0 · Glibc 2.40</div>
+                            <div><strong>Status:</strong> <span style="color: #facc15;">Fully independent system</span></div>
+                            <div><strong>Init:</strong> Custom shell script</div>
+                            <div><strong>Size:</strong> ~32 MB (compressed)</div>
                         </div>
                     </div>
 
@@ -54,12 +57,12 @@
                 <div class="badge">v0.1.0</div>
                 <h1>Linux From Nothing</h1>
                 <p class="hero-text">
-                    Budowa niezależnego systemu operacyjnego od czystej przestrzeni dyskowej.<br>
-                    Konfiguracja środowiska, kompilacja jądra oraz przygotowanie przestrzeni użytkownika.
+                    Building an independent operating system from bare disk space.<br>
+                    Environment configuration, kernel compilation, and user-space preparation.
                 </p>
                 <div class="hero-buttons">
-                    <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary">Otwórz repozytorium</a>
-                    <a href="#features" class="btn-secondary">Architektura &darr;</a>
+                    <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary">Open repository</a>
+                    <a href="#features" class="btn-secondary">Architecture &darr;</a>
                 </div>
             </div>
         </div>
@@ -67,30 +70,30 @@
 
     <section id="features" class="features">
         <div class="container">
-            <div class="section-label">// ARCHITEKTURA</div>
-            <h2 class="section-title">Komponenty systemu</h2>
+            <div class="section-label">// ARCHITECTURE</div>
+            <h2 class="section-title">System Components</h2>
             
             <div class="grid">
                 <div class="card">
                     <div class="card-header">
                         <span class="card-num">01</span>
-                        <h3>Kontrola</h3>
+                        <h3>Control</h3>
                     </div>
-                    <p>Wszystkie pliki binarne, biblioteki systemowe oraz skrypty rozruchowe są dobierane i kompilowane ręcznie.</p>
+                    <p>All binaries, system libraries, and boot scripts are selected and compiled manually.</p>
                 </div>
                 <div class="card">
                     <div class="card-header">
                         <span class="card-num">02</span>
                         <h3>Toolchain</h3>
                     </div>
-                    <p>Samodzielna kompilacja niezależnego zestawu narzędzi deweloperskich (Binutils, GCC, Glibc).</p>
+                    <p>Independent compilation of the development toolchain (Binutils, GCC, Glibc) ensures full isolation.</p>
                 </div>
                 <div class="card">
                     <div class="card-header">
                         <span class="card-num">03</span>
                         <h3>Kernel</h3>
                     </div>
-                    <p>Kompilacja monolitycznego jądra Linux dostosowanego bezpośrednio pod docelową architekturę sprzętową.</p>
+                    <p>Compilation of a monolithic Linux kernel tailored directly to the target hardware architecture.</p>
                 </div>
             </div>
         </div>
@@ -98,29 +101,29 @@
 
     <section class="steps">
         <div class="container">
-            <div class="section-label">// PROCES</div>
-            <h2 class="section-title">Etapy wdrożenia</h2>
+            <div class="section-label">// PROCESS</div>
+            <h2 class="section-title">Deployment Steps</h2>
             
             <div class="steps-flow">
                 <div class="step-item">
                     <div class="step-marker">1</div>
                     <div class="step-content">
-                        <h3>Przygotowanie środowiska</h3>
-                        <p>Konfiguracja zmiennych systemowych, struktury katalogów i pobranie kodów źródłowych upstream.</p>
+                        <h3>Environment Setup</h3>
+                        <p>Configuration of system variables, directory structure, and fetching upstream source code.</p>
                     </div>
                 </div>
                 <div class="step-item">
                     <div class="step-marker">2</div>
                     <div class="step-content">
-                        <h3>Budowa składników</h3>
-                        <p>Kompilacja cross-compilera oraz przygotowanie podstawowych programów przestrzeni użytkownika.</p>
+                        <h3>Building Components</h3>
+                        <p>Compilation of the cross-compiler and preparation of basic user-space programs.</p>
                     </div>
                 </div>
                 <div class="step-item">
                     <div class="step-marker">3</div>
                     <div class="step-content">
-                        <h3>Inicjalizacja systemu</h3>
-                        <p>Utworzenie skryptu rozruchowego init, montowanie systemów plików oraz testowe uruchomienie środowiska.</p>
+                        <h3>System Initialization</h3>
+                        <p>Creating the init boot script, mounting file systems, and performing a test environment boot.</p>
                     </div>
                 </div>
             </div>
@@ -129,21 +132,21 @@
 
     <section class="faq">
         <div class="container">
-            <div class="section-label">// ZAŁOŻENIA</div>
-            <h2 class="section-title">Fundamenty techniczne</h2>
+            <div class="section-label">// ASSUMPTIONS</div>
+            <h2 class="section-title">Technical Foundations</h2>
             
             <div class="faq-list">
                 <div class="faq-item">
-                    <h4>Brak menedżera pakietów</h4>
-                    <p>System nie bazuje na istniejących dystrybucjach. Całość powstaje poprzez bezpośrednie budowanie kodu ze źródeł.</p>
+                    <h4>No Package Manager</h4>
+                    <p>The system does not rely on any existing distribution. Everything is built directly from source code.</p>
                 </div>
                 <div class="faq-item">
-                    <h4>Minimalna przestrzeń użytkownika</h4>
-                    <p>Wykorzystanie uproszczonego zestawu narzędzi coreutils w celu zachowania minimalnego rozmiaru obrazu systemu.</p>
+                    <h4>Minimal User Space</h4>
+                    <p>Utilizing a stripped-down set of coreutils to maintain a minimal image size.</p>
                 </div>
                 <div class="faq-item">
-                    <h4>Własny init</h4>
-                    <p>System uruchamiany jest przez autorski skrypt inicjalizacyjny, który można łatwo modyfikować i dostosowywać.</p>
+                    <h4>Custom Init</h4>
+                    <p>The system is booted by a custom init script that can be easily modified and tailored.</p>
                 </div>
             </div>
         </div>
@@ -153,10 +156,56 @@
         <div class="container">
             <div class="footer-content">
                 <span class="footer-brand">[ lfn ]</span>
-                <span class="footer-license">Licencja MIT · <a href="https://github.com/keyfti/linux-from-nothing">github</a></span>
+                <span class="footer-license">MIT License · <a href="https://github.com/keyfti/linux-from-nothing">github</a></span>
             </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeDot = document.getElementById('close-dot');
+            const terminalBody = document.getElementById('terminal-body');
+            const terminal = document.getElementById('terminal');
+
+            closeDot.addEventListener('click', function() {
+                // Zapobiegamy wielokrotnemu kliknięciu
+                if (terminalBody.classList.contains('closing')) return;
+                terminalBody.classList.add('closing');
+
+                // Płynne zniknięcie terminala
+                terminalBody.style.transition = 'opacity 0.4s ease';
+                terminalBody.style.opacity = '0';
+
+                // Po 0.4s pokazujemy błysk (na 500ms) z informacją
+                setTimeout(() => {
+                    terminalBody.innerHTML = '';
+                    const flashMsg = document.createElement('div');
+                    flashMsg.style.cssText = `
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100%;
+                        color: #facc15;
+                        font-family: 'Fira Code', monospace;
+                        font-size: 1.2rem;
+                        opacity: 0;
+                        transition: opacity 0.1s ease;
+                    `;
+                    flashMsg.textContent = 'Exit 0: System ready.';
+                    terminalBody.appendChild(flashMsg);
+
+                    // Błysk na 150ms (tak, aby użytkownik zdążył zobaczyć)
+                    setTimeout(() => {
+                        flashMsg.style.opacity = '1';
+                    }, 10);
+
+                    // Po 400ms całkowicie znika
+                    setTimeout(() => {
+                        terminal.style.display = 'none';
+                    }, 400);
+                }, 400);
+            });
+        });
+    </script>
 </body>
 </html>
