@@ -27,7 +27,7 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic + NATYCHMIASTOWE PODKREŚLENIE
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -43,21 +43,18 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. Niezawodny listener na scroll (algorytm odległości)
-    // Oblicza, która sekcja jest najbliżej górnej krawędzi ekranu.
+    // 4. Niezawodny algorytm odległości (z DEBOUNCE dla płynności)
+    let scrollTimeout;
     function updateActiveLinkOnScroll() {
         const sections = document.querySelectorAll('.hero, #about, #projects');
         const navLinks = document.querySelectorAll('.nav-links a');
-        let closestSectionId = 'nav-home'; // Domyślnie Home
+        let closestSectionId = 'nav-home';
         let minDistance = Infinity;
 
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
-            // Sprawdzamy tylko te sekcje, które mają jakąkolwiek widoczną część na ekranie (bottom > 0)
             if (rect.bottom > 0) {
-                // Odległość górnej krawędzi sekcji od góry okna (0)
                 const distance = Math.abs(rect.top);
-                // Jeśli ta sekcja jest bliżej góry niż poprzednio znaleziona...
                 if (distance < minDistance) {
                     minDistance = distance;
                     const id = section.id;
@@ -68,12 +65,20 @@ window.addEventListener('load', function() {
             }
         });
 
-        // Usuń wszystkie podkreślenia i podkreśl właściwy link
+        // Zmiana tylko jeśli link się zmienił (zapobiega niepotrzebnym przeliczeniom)
+        const currentActive = document.querySelector('.nav-links a.active-link');
+        if (currentActive && currentActive.id === closestSectionId) return;
+
         navLinks.forEach(link => link.classList.remove('active-link'));
         document.getElementById(closestSectionId).classList.add('active-link');
     }
 
-    // Nasłuchuj zdarzenia scroll i od razu ustaw poprawny link po załadowaniu strony
-    window.addEventListener('scroll', updateActiveLinkOnScroll);
-    updateActiveLinkOnScroll(); 
+    // Debounce: czekamy 50ms po zakończeniu przewijania, żeby nie skakało
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(updateActiveLinkOnScroll, 50);
+    });
+
+    // Ustaw stan początkowy po załadowaniu
+    setTimeout(updateActiveLinkOnScroll, 100);
 });
