@@ -27,12 +27,12 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic + OD RAZU PODKREŚLENIE
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic + NATYCHMIASTOWE PODKREŚLENIE
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Podkreślamy kliknięty link
+            // Podkreślamy kliknięty link od razu
             document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
             this.classList.add('active-link');
 
@@ -43,32 +43,29 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. AUTOMATYCZNE PODKREŚLANIE PODCZAS PRZEWIJANIA (NAJWAŻNIEJSZA NAPRAWA)
-    // rootMargin: '-70px' oznacza, że sekcja zaczyna być liczona 70px poniżej góry (pod paskiem)
-    const sections = document.querySelectorAll('.hero, #about, #projects');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => link.classList.remove('active-link'));
-                
-                const id = entry.target.id;
-                if (id === 'about') {
-                    document.getElementById('nav-about').classList.add('active-link');
-                } else if (id === 'projects') {
-                    document.getElementById('nav-projects').classList.add('active-link');
-                } else {
-                    document.getElementById('nav-home').classList.add('active-link');
-                }
+    // 4. NIEZAWODNY LISTENER NA SCROLL (zastępuje popsuty IntersectionObserver)
+    function updateActiveLinkOnScroll() {
+        const sections = document.querySelectorAll('.hero, #about, #projects');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        let currentId = 'nav-home'; // Domyślnie Home
+
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            // Jeśli górna krawędź sekcji znajduje się w odległości <= 90px od góry (uwzględniając pasek)
+            if (rect.top <= 90) {
+                const id = section.id;
+                if (id === 'about') currentId = 'nav-about';
+                else if (id === 'projects') currentId = 'nav-projects';
+                else currentId = 'nav-home';
             }
         });
-    }, { 
-        threshold: 0.2,
-        rootMargin: '-70px 0px 0px 0px' // magiczna linijka, która naprawia cały problem z paskiem
-    });
 
-    sections.forEach(section => {
-        sectionObserver.observe(section);
-    });
+        // Usuń wszystkie podkreślenia i podkreśl właściwy link
+        navLinks.forEach(link => link.classList.remove('active-link'));
+        document.getElementById(currentId).classList.add('active-link');
+    }
+
+    // Nasłuchuj zdarzenia scroll i od razu ustaw poprawny link po załadowaniu strony
+    window.addEventListener('scroll', updateActiveLinkOnScroll);
+    updateActiveLinkOnScroll(); 
 });
