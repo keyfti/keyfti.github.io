@@ -125,11 +125,11 @@ body {
     border-bottom-color: #ffffff;
 }
 
-/* --- Terminal (kropki żółte, input przezroczysty) --- */
+/* --- Terminal (zero zieleni, żółte akcenty) --- */
 .terminal {
     background: #0a0a0c;
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 48px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.6);
@@ -137,23 +137,11 @@ body {
 
 .terminal-header {
     background: #121214;
-    padding: 8px 16px;
+    padding: 10px 16px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--border);
-    position: relative;
-}
-
-.terminal-dots {
-    display: flex;
-    gap: 8px;
-}
-
-.terminal-dots span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: var(--accent);  /* WSZYSTKIE KROPKI ŻÓŁTE */
 }
 
 .terminal-title {
@@ -161,22 +149,24 @@ body {
     font-family: var(--font-mono);
     font-size: 0.8rem;
     font-weight: 400;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+}
+
+.terminal-dots {
+    color: #555;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
 }
 
 .terminal-body {
-    padding: 20px;
+    padding: 24px;
     font-family: var(--font-mono);
     font-size: 0.9rem;
     line-height: 1.8;
-    min-height: 280px;
 }
 
 .terminal-body .line {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-wrap: wrap;
 }
 
@@ -190,38 +180,40 @@ body {
     color: #e4e4e7;
 }
 
-.terminal-body .output {
-    color: var(--text-muted);
-    padding-left: 20px;
-    width: 100%;
+/* Wyjście fastfetch */
+.fastfetch-output {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 24px;
+    padding: 12px 0 8px 20px;
+    align-items: flex-start;
+    flex-wrap: wrap;
 }
 
-.logo-yellow {
-    color: var(--accent);
-    margin: 0;
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    line-height: 1.2;
-    white-space: pre;
+.tux-container {
+    flex-shrink: 0;
 }
 
-.sysinfo {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: #e4e4e7;
-    margin-top: 4px;
+.tux-img {
+    width: 110px;
+    height: auto;
+    display: block;
+    image-rendering: auto;
 }
 
-.sysinfo .label {
+.sys-info {
     color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    line-height: 2;
 }
 
-.terminal-body .cursor {
+.sys-info strong {
+    color: #e4e4e7;
+    font-weight: 600;
+}
+
+/* Migający kursor */
+.cursor {
     display: inline-block;
     width: 10px;
     height: 18px;
@@ -399,13 +391,14 @@ footer {
     .step-item {
         gap: 16px;
     }
-    .terminal-title {
-        font-size: 0.6rem;
+    .fastfetch-output {
+        flex-direction: column;
+        align-items: center;
     }
-    .logo-yellow {
-        font-size: 0.65rem;
+    .tux-img {
+        width: 80px;
     }
-    .sysinfo {
-        font-size: 0.7rem;
+    .sys-info {
+        font-size: 0.75rem;
     }
 }
