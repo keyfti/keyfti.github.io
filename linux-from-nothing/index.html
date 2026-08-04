@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <!-- Porządny szary pasek nawigacyjny -->
+    <!-- Pasek nawigacyjny -->
     <nav class="navbar">
         <div class="container nav-container">
             <ul class="nav-links">
-                <li><a href="#features" data-i18n="nav_arch">Architecture</a></li>
-                <li><a href="#steps" data-i18n="nav_proc">Process</a></li>
-                <li><a href="#faq" data-i18n="nav_faq">Assumptions</a></li>
+                <li><a href="#" data-view="architecture" data-i18n="nav_arch">Architecture</a></li>
+                <li><a href="#" data-view="process" data-i18n="nav_proc">Process</a></li>
+                <li><a href="#" data-view="assumptions" data-i18n="nav_faq">Assumptions</a></li>
             </ul>
             <div class="nav-lang" id="lang-switcher">
                 <span id="flag-pl" class="flag" title="Polski">🇵🇱</span>
@@ -28,6 +28,7 @@
 
     <header class="hero">
         <div class="container">
+            <!-- Terminal -->
             <div class="terminal" id="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dots">
@@ -42,7 +43,6 @@
                         <span class="prompt">$</span>
                         <span class="cmd">cat /etc/lfn-release</span>
                     </div>
-                    
                     <div class="output-container">
                         <div class="tux-side">
                             <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Tux" class="tux-img">
@@ -57,7 +57,6 @@
                             <div><span data-i18n="status">Status:</span> <span style="color: #facc15;" data-i18n="status_independent">Fully independent system</span></div>
                         </div>
                     </div>
-
                     <div class="line" style="margin-top: 12px;">
                         <span class="prompt">$</span>
                         <span class="cursor">_</span>
@@ -74,48 +73,38 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary" data-i18n="btn_repo">Open repository</a>
-                    <a href="#features" class="btn-secondary" data-i18n="btn_arch">Architecture &darr;</a>
+                    <a href="#" data-view="architecture" class="btn-secondary" data-i18n="btn_arch">Architecture &darr;</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="features" class="features fade-in">
+    <!-- OSOBNE WIDOKI (przełączane przez JS) -->
+    <div id="view-architecture" class="view active">
         <div class="container">
             <div class="section-label" data-i18n="label_arch">// ARCHITECTURE</div>
             <h2 class="section-title" data-i18n="title_arch">System Components</h2>
-            
             <div class="grid">
                 <div class="card">
-                    <div class="card-header">
-                        <span class="card-num">01</span>
-                        <h3 data-i18n="card1_title">Control</h3>
-                    </div>
+                    <div class="card-header"><span class="card-num">01</span><h3 data-i18n="card1_title">Control</h3></div>
                     <p data-i18n="card1_desc">All binaries, system libraries, and boot scripts are selected and compiled manually.</p>
                 </div>
                 <div class="card">
-                    <div class="card-header">
-                        <span class="card-num">02</span>
-                        <h3 data-i18n="card2_title">Toolchain</h3>
-                    </div>
+                    <div class="card-header"><span class="card-num">02</span><h3 data-i18n="card2_title">Toolchain</h3></div>
                     <p data-i18n="card2_desc">Independent compilation of the development toolchain (Binutils, GCC, Glibc) ensures full isolation.</p>
                 </div>
                 <div class="card">
-                    <div class="card-header">
-                        <span class="card-num">03</span>
-                        <h3 data-i18n="card3_title">Kernel</h3>
-                    </div>
+                    <div class="card-header"><span class="card-num">03</span><h3 data-i18n="card3_title">Kernel</h3></div>
                     <p data-i18n="card3_desc">Compilation of a monolithic Linux kernel tailored directly to the target hardware architecture.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="steps" class="steps fade-in">
+    <div id="view-process" class="view">
         <div class="container">
             <div class="section-label" data-i18n="label_proc">// PROCESS</div>
             <h2 class="section-title" data-i18n="title_proc">Deployment Steps</h2>
-            
             <div class="steps-flow">
                 <div class="step-item">
                     <div class="step-marker">1</div>
@@ -140,13 +129,12 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="faq" class="faq fade-in">
+    <div id="view-assumptions" class="view">
         <div class="container">
             <div class="section-label" data-i18n="label_faq">// ASSUMPTIONS</div>
             <h2 class="section-title" data-i18n="title_faq">Technical Foundations</h2>
-            
             <div class="faq-list">
                 <div class="faq-item">
                     <h4 data-i18n="faq1_title">No Package Manager</h4>
@@ -162,7 +150,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <footer>
         <div class="container">
