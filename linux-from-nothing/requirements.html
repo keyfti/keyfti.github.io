@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LFN - Requirements</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <ul class="nav-links">
+                <li><a href="index.html" data-i18n="nav_home">Home</a></li>
+                <li><a href="tutorial.html" data-i18n="nav_tutorial">Tutorial</a></li>
+                <li><a href="requirements.html" class="active-link" data-i18n="nav_req">Requirements</a></li>
+                <li><a href="info.html" data-i18n="nav_info">Info</a></li>
+            </ul>
+            <div class="nav-lang" id="lang-switcher">
+                <span id="flag-pl" class="flag" title="Polski">🇵🇱</span>
+                <span id="flag-us" class="flag active" title="English">🇺🇸</span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="features fade-in visible">
+        <div class="container">
+            <div class="section-label" data-i18n="label_req">// REQUIREMENTS</div>
+            <h2 class="section-title" data-i18n="title_req">System Requirements</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-num">01</span>
+                        <h3 data-i18n="req1_title">Operating System</h3>
+                    </div>
+                    <p data-i18n="req1_desc">Linux distribution (or Windows WSL) with GCC, make, autoconf, and automake installed.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-num">02</span>
+                        <h3 data-i18n="req2_title">Hardware</h3>
+                    </div>
+                    <p data-i18n="req2_desc">Minimum 4GB RAM (8GB recommended) and approximately 10GB of free disk space for builds.</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-num">03</span>
+                        <h3 data-i18n="req3_title">Network</h3>
+                    </div>
+                    <p data-i18n="req3_desc">Stable internet connection to fetch all required upstream source packages and patches.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <span class="footer-brand">[ lfn ]</span>
+                <span class="footer-license">MIT License · <a href="https://github.com/keyfti/linux-from-nothing">github</a></span>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
