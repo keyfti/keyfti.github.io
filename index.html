@@ -32,7 +32,8 @@
                 </p>
                 <div class="hero-buttons fade-in-up delay-4">
                     <a href="https://github.com/keyfti" class="btn-primary">View GitHub &rarr;</a>
-                    <a href="#projects" class="btn-secondary">View Projects &darr;</a>
+                    <!-- Zmienione na btn-primary, żeby było żółte i widoczne -->
+                    <a href="https://keyfti.github.io/linux-from-nothing/" class="btn-primary">Explore LFN &darr;</a>
                 </div>
             </div>
         </div>
@@ -53,38 +54,26 @@
     <section id="projects" class="features fade-in-up visible">
         <div class="container">
             <div class="section-label">// PROJECTS</div>
-            <h2 class="section-title">Featured Work</h2>
+            <h2 class="section-title">Projects</h2>
             <div class="grid">
-                <!-- LFN - główny projekt z wyróżnionym przyciskiem -->
-                <div class="card lfn-card">
+                <!-- 1. Linux From Nothing -->
+                <div class="card">
                     <div class="card-header">
                         <span class="card-num">01</span>
                         <h3>Linux From Nothing</h3>
                     </div>
-                    <p>A fully customizable, source-based Linux distribution. No package manager, pure manual compilation, crafted for education.</p>
-                    <div style="margin-top: 16px;">
-                        <a href="https://keyfti.github.io/linux-from-nothing/" class="btn-lfn">Open LFN Project &rarr;</a>
-                    </div>
+                    <p>A fully customizable, source-based Linux distribution. No package manager, pure manual compilation, crafted for education and low-level system control.</p>
+                    <!-- Żółty, wyraźny link do projektu -->
+                    <a href="https://keyfti.github.io/linux-from-nothing/" style="display: inline-block; margin-top: 16px; color: #facc15; font-weight: 600; border-bottom: 2px solid #facc15; padding-bottom: 2px; text-decoration: none;">Open LFN Project →</a>
                 </div>
-                
-                <!-- Coming soon - placeholder -->
-                <div class="card coming-soon">
+
+                <!-- 2. Coming Soon -->
+                <div class="card">
                     <div class="card-header">
                         <span class="card-num">02</span>
-                        <h3>Next Project</h3>
+                        <h3>Coming Soon</h3>
                     </div>
-                    <p>More low-level tools and system experiments are in development. Stay tuned.</p>
-                    <div style="margin-top: 16px; color: var(--text-muted); font-size: 0.8rem;">Coming soon</div>
-                </div>
-                
-                <!-- Trzecia karta jako dodatkowy placeholder -->
-                <div class="card coming-soon">
-                    <div class="card-header">
-                        <span class="card-num">03</span>
-                        <h3>Future Work</h3>
-                    </div>
-                    <p>Exploring new architectures and minimal system designs.</p>
-                    <div style="margin-top: 16px; color: var(--text-muted); font-size: 0.8rem;">Coming soon</div>
+                    <p>New project currently in development. Stay tuned for updates on my next low-level system build.</p>
                 </div>
             </div>
         </div>
