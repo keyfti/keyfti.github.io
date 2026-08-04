@@ -13,36 +13,36 @@
 
     <header class="hero">
         <div class="container">
-            <!-- Czysty terminal bez zamykania -->
-            <div class="terminal">
+            <!-- Terminal z zamykaniem (bez easter egga) -->
+            <div class="terminal" id="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dots">
-                        <span></span>
+                        <span id="close-dot"></span>
                         <span></span>
                         <span></span>
                     </div>
                     <span class="terminal-title">lfn@local ~</span>
                 </div>
-                <div class="terminal-body">
+                <div class="terminal-body" id="terminal-body">
                     <div class="line">
                         <span class="prompt">$</span>
                         <span class="cmd">cat /etc/lfn-release</span>
                     </div>
                     
                     <div class="output-container">
-                        <!-- Tux bez szarego tła -->
+                        <!-- Tux (obrazek, nie napis) -->
                         <div class="tux-side">
                             <img src="tux.png" alt="Tux" class="tux-img">
                         </div>
-                        <!-- System Info -->
+                        <!-- System Info (najnowsze dane) -->
                         <div class="sys-side">
                             <div><strong>Linux From Nothing</strong> v0.1.0</div>
                             <div><strong>Build:</strong> x86_64</div>
-                            <div><strong>Kernel:</strong> 6.12.0-lfn</div>
-                            <div><strong>Toolchain:</strong> GCC 14.2.0 · Glibc 2.40</div>
+                            <div><strong>Kernel:</strong> 6.12.6 (Stable)</div>
+                            <div><strong>Toolchain:</strong> GCC 14.2.0 · Glibc 2.41</div>
+                            <div><strong>Shell:</strong> bash 5.2.42</div>
+                            <div><strong>Init:</strong> Custom / BusyBox / OpenRC (Selectable)</div>
                             <div><strong>Status:</strong> <span style="color: #facc15;">Fully independent system</span></div>
-                            <div><strong>Init:</strong> Custom shell script</div>
-                            <div><strong>Size:</strong> ~32 MB (compressed)</div>
                         </div>
                     </div>
 
@@ -161,5 +161,22 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeDot = document.getElementById('close-dot');
+            const terminal = document.getElementById('terminal');
+
+            closeDot.addEventListener('click', function() {
+                // Po prostu zamyka terminal - żadnego easter-egga, żadnych komunikatów
+                terminal.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                terminal.style.opacity = '0';
+                terminal.style.transform = 'scale(0.95)';
+                
+                setTimeout(() => {
+                    terminal.style.display = 'none';
+                }, 300);
+            });
+        });
+    </script>
 </body>
 </html>
