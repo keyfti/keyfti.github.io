@@ -27,12 +27,11 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic + NATYCHMIASTOWE PODKREŚLENIE
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Podkreślamy kliknięty link od razu (jeszcze przed animacją)
             document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
             this.classList.add('active-link');
 
@@ -43,42 +42,34 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. Niezawodny algorytm odległości (z DEBOUNCE dla płynności)
-    let scrollTimeout;
+    // 4. NIEZAWODNY LISTENER NA SCROLL (bez Math.abs, stabilny)
     function updateActiveLinkOnScroll() {
         const sections = document.querySelectorAll('.hero, #about, #projects');
         const navLinks = document.querySelectorAll('.nav-links a');
-        let closestSectionId = 'nav-home';
-        let minDistance = Infinity;
+        let currentId = 'nav-home';
+        let closestTop = 9999;
 
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
-            if (rect.bottom > 0) {
-                const distance = Math.abs(rect.top);
-                if (distance < minDistance) {
-                    minDistance = distance;
+            // Szukamy tylko tych sekcji, które są widoczne na ekranie (bottom > 0)
+            // i znajdują się w okolicach góry (top < 120 - wysokość paska)
+            if (rect.bottom > 0 && rect.top < 120) {
+                // Wybieramy tę, która jest najbliżej góry (ma najmniejszy rect.top)
+                if (rect.top < closestTop) {
+                    closestTop = rect.top;
                     const id = section.id;
-                    if (id === 'about') closestSectionId = 'nav-about';
-                    else if (id === 'projects') closestSectionId = 'nav-projects';
-                    else closestSectionId = 'nav-home';
+                    if (id === 'about') currentId = 'nav-about';
+                    else if (id === 'projects') currentId = 'nav-projects';
+                    else currentId = 'nav-home';
                 }
             }
         });
 
-        // Zmiana tylko jeśli link się zmienił (zapobiega niepotrzebnym przeliczeniom)
-        const currentActive = document.querySelector('.nav-links a.active-link');
-        if (currentActive && currentActive.id === closestSectionId) return;
-
+        // Usuń wszystkie podkreślenia i podkreśl właściwy link
         navLinks.forEach(link => link.classList.remove('active-link'));
-        document.getElementById(closestSectionId).classList.add('active-link');
+        document.getElementById(currentId).classList.add('active-link');
     }
 
-    // Debounce: czekamy 50ms po zakończeniu przewijania, żeby nie skakało
-    window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveLinkOnScroll, 50);
-    });
-
-    // Ustaw stan początkowy po załadowaniu
-    setTimeout(updateActiveLinkOnScroll, 100);
+    window.addEventListener('scroll', updateActiveLinkOnScroll);
+    updateActiveLinkOnScroll(); 
 });
