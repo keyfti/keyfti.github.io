@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux From Nothing (LFN)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <div class="badge">v0.1.0</div>
+            <h1>Linux From Nothing</h1>
+            <p class="hero-text">
+                Budowa niezależnego systemu operacyjnego od czystej przestrzeni dyskowej.<br>
+                Konfiguracja środowiska, kompilacja jądra oraz przygotowanie przestrzeni użytkownika.
+            </p>
+            <div class="hero-buttons">
+                <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary">Otwórz repozytorium</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title">Architektura projektu</div>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+                    </div>
+                    <h3>Kontrola</h3>
+                    <p>Wszystkie pliki binarne, biblioteki systemowe oraz skrypty rozruchowe są dobierane i kompilowane ręcznie.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </div>
+                    <h3>Toolchain</h3>
+                    <p>Samodzielna kompilacja niezależnego zestawu narzędzi deweloperskich (Binutils, GCC, Glibc).</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 1 10 10c0 5.523-4.477 10-10 10S2 17.523 2 12c0-2.33.796-4.47 2.14-6.17L12 12z"></path><path d="M12 22a10 10 0 0 1-7.86-16.17l4.43 4.44a5 5 0 1 0 6.86 0l4.43-4.44A10 10 0 0 1 12 22z"></path></svg>
+                    </div>
+                    <h3>Kernel</h3>
+                    <p>Kompilacja monolitycznego jądra Linux dostosowanego bezpośrednio pod docelową architekturę sprzętową.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps">
+        <div class="container">
+            <div class="section-title">Etapy wdrożenia</div>
+            <div class="steps-flow">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <h3>Przygotowanie środowiska</h3>
+                        <p>Konfiguracja zmiennych systemowych, struktury katalogów i pobranie kodów źródłowych upstream.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <h3>Budowa składników</h3>
+                        <p>Kompilacja cross-compilera oraz przygotowanie podstawowych programów przestrzeni użytkownika.</p>
+                    </div>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-info">
+                        <h3>Inicjalizacja systemu</h3>
+                        <p>Utworzenie skryptu rozruchowego init, montowanie systemów plików oraz testowe uruchomienie środowiska.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">Założenia techniczne</div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h4>Brak menedżera pakietów</h4>
+                    <p>System nie bazuje na istniejących dystrybucjach. Całość powstaje poprzez bezpośrednie budowanie kodu ze źródeł.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Przestrzeń użytkownika</h4>
+                    <p>Wykorzystanie uproszczonego zestawu narzędzi coreutils w celu zachowania minimalnego rozmiaru obrazu systemu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Licencja MIT</p>
+        </div>
+    </footer>
+
+</body>
+</html>
