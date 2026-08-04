@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
         observer.observe(el);
     });
 
-    // 2. Płynne przejście między podstronami (zewnętrzne linki)
+    // 2. Płynne przejście między podstronami
     document.querySelectorAll('.nav-links a, .hero-buttons a').forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -27,12 +27,11 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Płynne przewijanie po kliknięciu w linki kotwic + podkreślenie
+    // 3. Płynne przewijanie po kliknięciu w linki kotwic
     document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            // Natychmiast podkreślamy kliknięty link
+            // Od razu podkreślamy kliknięty link
             document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active-link'));
             this.classList.add('active-link');
 
@@ -43,36 +42,33 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. ALGORYTM SKANOWANIA (NIEZAWODNY, BEZ SKAKANIA)
-    function updateActiveLinkOnScroll() {
-        const sections = document.querySelectorAll('.hero, #about, #projects');
-        const navLinks = document.querySelectorAll('.nav-links a');
-        let activeId = 'nav-home'; // Domyślnie Home
-
-        // Sprawdzamy, czy jesteśmy na samej górze (w sekcji Hero)
-        const heroRect = document.querySelector('.hero').getBoundingClientRect();
-        if (heroRect.top >= -10 && heroRect.top < 70) {
-            activeId = 'nav-home';
-        } else {
-            // Jeśli nie jesteśmy na górze, szukamy która sekcja jest widoczna
-            sections.forEach(section => {
-                const rect = section.getBoundingClientRect();
-                // Jeśli górna krawędź sekcji jest widoczna (czyli mniejsza niż 1px od góry ekranu)
-                // lub sekcja jest już widoczna na ekranie
-                if (rect.top < 70 && rect.bottom > 0) {
-                    const id = section.id;
-                    if (id === 'about') activeId = 'nav-about';
-                    else if (id === 'projects') activeId = 'nav-projects';
-                    else activeId = 'nav-home';
+    // 4. NAJWAŻNIEJSZE: Obserwator dla podkreśleń (BEZ SKAKANIA)
+    const sections = document.querySelectorAll('#hero, #about, #projects');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Usuń podkreślenie ze wszystkich linków
+                navLinks.forEach(link => link.classList.remove('active-link'));
+                
+                // Podkreśl ten, który pasuje do widocznej sekcji
+                const id = entry.target.id;
+                if (id === 'about') {
+                    document.getElementById('nav-about').classList.add('active-link');
+                } else if (id === 'projects') {
+                    document.getElementById('nav-projects').classList.add('active-link');
+                } else if (id === 'hero') {
+                    document.getElementById('nav-home').classList.add('active-link');
                 }
-            });
-        }
+            }
+        });
+    }, { 
+        rootMargin: '-70px 0px 0px 0px', // Magiczna linijka – liczy sekcję dopiero 70px poniżej góry
+        threshold: 0 // Działa w momencie, gdy sekcja dotknie tej linii – ZERO SKAKANIA
+    });
 
-        // Usuń wszystkie podkreślenia i podkreśl właściwy link
-        navLinks.forEach(link => link.classList.remove('active-link'));
-        document.getElementById(activeId).classList.add('active-link');
-    }
-
-    window.addEventListener('scroll', updateActiveLinkOnScroll);
-    updateActiveLinkOnScroll(); 
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
 });
