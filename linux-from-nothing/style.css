@@ -36,7 +36,6 @@ body {
     padding: 0 16px;
 }
 
-/* --- Typography --- */
 .section-label {
     font-family: var(--font-mono);
     font-size: 0.8rem;
@@ -54,7 +53,6 @@ body {
     margin-bottom: 32px;
 }
 
-/* --- Hero --- */
 .hero {
     padding: 20px 0 80px;
 }
@@ -125,7 +123,7 @@ body {
     border-bottom-color: #ffffff;
 }
 
-/* --- Terminal --- */
+/* Terminal bez żadnego zamykania */
 .terminal {
     background: #0a0a0c;
     border: 1px solid var(--border);
@@ -133,7 +131,6 @@ body {
     margin-bottom: 48px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-    transition: all 0.4s ease;
 }
 
 .terminal-header {
@@ -165,14 +162,11 @@ body {
     height: 12px;
     border-radius: 50%;
     cursor: default;
-    transition: opacity 0.2s ease;
 }
 
-.terminal-dots span:nth-child(1) { background: #ff5f56; cursor: pointer; }
+.terminal-dots span:nth-child(1) { background: #ff5f56; }
 .terminal-dots span:nth-child(2) { background: #ffbd2e; }
 .terminal-dots span:nth-child(3) { background: #27c93f; }
-
-.terminal-dots span:nth-child(1):hover { opacity: 0.7; }
 
 .terminal-body {
     padding: 24px;
@@ -198,7 +192,7 @@ body {
     color: #e4e4e7;
 }
 
-/* Output section */
+/* Tux bez szarego tła */
 .output-container {
     display: flex;
     gap: 24px;
@@ -209,13 +203,14 @@ body {
 
 .tux-side {
     flex-shrink: 0;
+    background: transparent !important; /* Usuwa ewentualne szare tło */
 }
 
 .tux-img {
     width: 110px;
     height: auto;
     display: block;
-    image-rendering: auto;
+    background: none !important; /* Zapewnia przezroczystość PNG */
 }
 
 .sys-side {
@@ -230,7 +225,6 @@ body {
     font-weight: 600;
 }
 
-/* Cursor */
 .cursor {
     display: inline-block;
     width: 10px;
@@ -244,7 +238,6 @@ body {
     50% { opacity: 0; }
 }
 
-/* --- Features --- */
 .features, .steps, .faq {
     padding: 80px 0;
     border-top: 1px solid var(--border);
@@ -296,7 +289,6 @@ body {
     line-height: 1.5;
 }
 
-/* --- Steps --- */
 .steps-flow {
     display: flex;
     flex-direction: column;
@@ -337,7 +329,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- FAQ --- */
 .faq-list {
     display: flex;
     flex-direction: column;
@@ -356,7 +347,6 @@ body {
     font-size: 0.9rem;
 }
 
-/* --- Footer --- */
 footer {
     padding: 40px 0;
     border-top: 1px solid var(--border);
@@ -392,7 +382,6 @@ footer {
     color: #ffffff;
 }
 
-/* --- Responsive --- */
 @media (max-width: 640px) {
     body {
         padding: 40px 12px 0;
