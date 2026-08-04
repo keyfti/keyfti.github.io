@@ -31,7 +31,6 @@ window.addEventListener('load', function() {
         }
     }
 
-    // Egg 1: Kliknięcie w Tuxa
     if(tux) {
         tux.addEventListener('click', function() {
             addTerminalLine('echo "Tux says: Hello from LFN! Let\'s build something great!"');
@@ -39,7 +38,6 @@ window.addEventListener('load', function() {
         });
     }
 
-    // Egg 2: Kliknięcie w kursor
     if(cursor) {
         cursor.addEventListener('click', function() {
             addTerminalLine('fastfetch --secret');
@@ -47,11 +45,38 @@ window.addEventListener('load', function() {
         });
     }
 
-    // Egg 3: Podwójne kliknięcie na wersję (v0.1.0)
     if(badge) {
         badge.addEventListener('dblclick', function() {
             addTerminalLine('cat /dev/urandom | strings | grep "LFN"');
             addTerminalLine('404: Easter egg not found... just kidding! You found me!', true);
         });
     }
+
+    // 3. ANIMACJE SCROLLOWANIA (Intersection Observer)
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+    });
+
+    // 4. PŁYNNE PRZEJŚCIE MIĘDZY PODSTRONAMI
+    document.querySelectorAll('.nav-links a, .hero-buttons a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            // Jeśli link prowadzi do innej podstrony (nie jest kotwicą) i nie otwiera GitHub
+            if (href && !href.startsWith('#') && !href.startsWith('http')) {
+                e.preventDefault();
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            }
+        });
+    });
 });
