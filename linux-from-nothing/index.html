@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <!-- Pasek nawigacyjny -->
     <nav class="navbar">
         <div class="container nav-container">
             <ul class="nav-links">
-                <li><a href="#" data-view="architecture" data-i18n="nav_arch">Architecture</a></li>
-                <li><a href="#" data-view="process" data-i18n="nav_proc">Process</a></li>
-                <li><a href="#" data-view="assumptions" data-i18n="nav_faq">Assumptions</a></li>
+                <li><a href="index.html" class="active-link" data-i18n="nav_home">Home</a></li>
+                <li><a href="architecture.html" data-i18n="nav_arch">Architecture</a></li>
+                <li><a href="process.html" data-i18n="nav_proc">Process</a></li>
+                <li><a href="assumptions.html" data-i18n="nav_faq">Assumptions</a></li>
             </ul>
             <div class="nav-lang" id="lang-switcher">
                 <span id="flag-pl" class="flag" title="Polski">🇵🇱</span>
@@ -28,25 +28,18 @@
 
     <header class="hero">
         <div class="container">
-            <!-- Terminal -->
             <div class="terminal" id="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dots">
                         <span id="close-dot"></span>
-                        <span></span>
-                        <span></span>
+                        <span></span><span></span>
                     </div>
                     <span class="terminal-title">lfn@local ~</span>
                 </div>
-                <div class="terminal-body">
-                    <div class="line">
-                        <span class="prompt">$</span>
-                        <span class="cmd">cat /etc/lfn-release</span>
-                    </div>
-                    <div class="output-container">
-                        <div class="tux-side">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Tux" class="tux-img">
-                        </div>
+                <div class="terminal-body" id="terminal-body">
+                    <div class="line"><span class="prompt">$</span><span class="cmd">cat /etc/lfn-release</span></div>
+                    <div class="output-container" id="output-container">
+                        <div class="tux-side" id="tux-click"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Tux" class="tux-img"></div>
                         <div class="sys-side" id="sys-info">
                             <div><strong data-i18n="os">OS:</strong> Linux From Nothing v0.1.0</div>
                             <div data-i18n="build">Build: x86_64</div>
@@ -58,14 +51,13 @@
                         </div>
                     </div>
                     <div class="line" style="margin-top: 12px;">
-                        <span class="prompt">$</span>
-                        <span class="cursor">_</span>
+                        <span class="prompt">$</span><span class="cursor" id="cursor-egg">_</span>
                     </div>
                 </div>
             </div>
 
             <div class="hero-content">
-                <div class="badge">v0.1.0</div>
+                <div class="badge" id="secret-badge">v0.1.0</div>
                 <h1>Linux From Nothing</h1>
                 <p class="hero-text" data-i18n="hero_text">
                     Building an independent operating system from bare disk space.<br>
@@ -73,84 +65,23 @@
                 </p>
                 <div class="hero-buttons">
                     <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary" data-i18n="btn_repo">Open repository</a>
-                    <a href="#" data-view="architecture" class="btn-secondary" data-i18n="btn_arch">Architecture &darr;</a>
+                    <a href="architecture.html" class="btn-secondary" data-i18n="btn_arch">Architecture &rarr;</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- OSOBNE WIDOKI (przełączane przez JS) -->
-    <div id="view-architecture" class="view active">
+    <section class="about fade-in visible">
         <div class="container">
-            <div class="section-label" data-i18n="label_arch">// ARCHITECTURE</div>
-            <h2 class="section-title" data-i18n="title_arch">System Components</h2>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-header"><span class="card-num">01</span><h3 data-i18n="card1_title">Control</h3></div>
-                    <p data-i18n="card1_desc">All binaries, system libraries, and boot scripts are selected and compiled manually.</p>
-                </div>
-                <div class="card">
-                    <div class="card-header"><span class="card-num">02</span><h3 data-i18n="card2_title">Toolchain</h3></div>
-                    <p data-i18n="card2_desc">Independent compilation of the development toolchain (Binutils, GCC, Glibc) ensures full isolation.</p>
-                </div>
-                <div class="card">
-                    <div class="card-header"><span class="card-num">03</span><h3 data-i18n="card3_title">Kernel</h3></div>
-                    <p data-i18n="card3_desc">Compilation of a monolithic Linux kernel tailored directly to the target hardware architecture.</p>
-                </div>
-            </div>
+            <div class="section-label" data-i18n="label_about">// ABOUT</div>
+            <h2 class="section-title" data-i18n="title_about">What is LFN?</h2>
+            <p data-i18n="about_desc" style="color: var(--text-muted); font-size: 1.05rem; max-width: 600px; line-height: 1.8;">
+                Linux From Nothing is a fully customizable, source-based Linux distribution built entirely from scratch. 
+                Unlike traditional distros, you control every binary, library, and boot script. 
+                It is designed for low-level system education and minimal embedded environments.
+            </p>
         </div>
-    </div>
-
-    <div id="view-process" class="view">
-        <div class="container">
-            <div class="section-label" data-i18n="label_proc">// PROCESS</div>
-            <h2 class="section-title" data-i18n="title_proc">Deployment Steps</h2>
-            <div class="steps-flow">
-                <div class="step-item">
-                    <div class="step-marker">1</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step1_title">Environment Setup</h3>
-                        <p data-i18n="step1_desc">Configuration of system variables, directory structure, and fetching upstream source code.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-marker">2</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step2_title">Building Components</h3>
-                        <p data-i18n="step2_desc">Compilation of the cross-compiler and preparation of basic user-space programs.</p>
-                    </div>
-                </div>
-                <div class="step-item">
-                    <div class="step-marker">3</div>
-                    <div class="step-content">
-                        <h3 data-i18n="step3_title">System Initialization</h3>
-                        <p data-i18n="step3_desc">Creating the init boot script, mounting file systems, and performing a test environment boot.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="view-assumptions" class="view">
-        <div class="container">
-            <div class="section-label" data-i18n="label_faq">// ASSUMPTIONS</div>
-            <h2 class="section-title" data-i18n="title_faq">Technical Foundations</h2>
-            <div class="faq-list">
-                <div class="faq-item">
-                    <h4 data-i18n="faq1_title">No Package Manager</h4>
-                    <p data-i18n="faq1_desc">The system does not rely on any existing distribution. Everything is built directly from source code.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 data-i18n="faq2_title">Minimal User Space</h4>
-                    <p data-i18n="faq2_desc">Utilizing a stripped-down set of coreutils to maintain a minimal image size.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 data-i18n="faq3_title">Custom Init</h4>
-                    <p data-i18n="faq3_desc">The system is booted by a custom init script that can be easily modified and tailored.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <footer>
         <div class="container">
