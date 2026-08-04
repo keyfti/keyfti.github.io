@@ -39,7 +39,7 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 4. AUTOMATYCZNE PODKREŚLANIE AKTYWNEGO LINKU PODCZAS PRZEWIJANIA (OBSERVER)
+    // 4. AUTOMATYCZNE PODKREŚLANIE AKTYWNEGO LINKU PODCZAS PRZEWIJANIA
     const sections = document.querySelectorAll('.hero, #about, #projects');
     const navLinks = document.querySelectorAll('.nav-links a');
     
@@ -49,7 +49,7 @@ window.addEventListener('load', function() {
                 // Usuń podkreślenie ze wszystkich linków
                 navLinks.forEach(link => link.classList.remove('active-link'));
                 
-                // Sprawdź, która sekcja jest widoczna i podkreśl odpowiedni link
+                // Sprawdź, która sekcja jest widoczna
                 const id = entry.target.id;
                 if (id === 'about') {
                     document.getElementById('nav-about').classList.add('active-link');
@@ -61,7 +61,7 @@ window.addEventListener('load', function() {
                 }
             }
         });
-    }, { threshold: 0.3 }); // 0.3 oznacza, że sekcja musi być widoczna w 30%, aby się podkreśliła
+    }, { threshold: 0.1 }); // <-- ZMIANA: 0.1 zamiast 0.3. Łapie sekcję już przy 10% widoczności
 
     // Obserwuj wszystkie sekcje
     sections.forEach(section => {
