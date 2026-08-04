@@ -61,7 +61,7 @@ window.addEventListener('load', function() {
                 }
             }
         });
-    }, { threshold: 0.1 }); // <-- ZMIANA: 0.1 zamiast 0.3. Łapie sekcję już przy 10% widoczności
+    }, { threshold: 0.1 });
 
     // Obserwuj wszystkie sekcje
     sections.forEach(section => {
