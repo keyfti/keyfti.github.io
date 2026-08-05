@@ -12,7 +12,6 @@ body {
 }
 .container { max-width: 780px; margin: 0 auto; padding: 0 16px; }
 
-/* Navbar */
 .navbar {
     position: fixed; top: 0; left: 0; width: 100%;
     background: var(--surface); border-bottom: 1px solid var(--border);
@@ -25,12 +24,13 @@ body {
     font-weight: 500; transition: color 0.2s ease, transform 0.2s ease;
     border-bottom: 2px solid transparent; padding-bottom: 2px;
 }
+
 .nav-links a:hover, .nav-links a.active-link {
-    color: #ffffff; border-bottom-color: var(--accent);
+    color: #ffffff !important;
+    border-bottom-color: var(--accent) !important;
     transform: translateY(-1px);
 }
 
-/* --- Przycisk powrotu (wyodrębniony) --- */
 .nav-back {
     display: flex;
     align-items: center;
@@ -52,11 +52,9 @@ body {
     transform: translateX(-2px);
 }
 
-/* Typo */
 .section-label { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 6px; }
 .section-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; color: #ffffff; margin-bottom: 32px; }
 
-/* Animacje */
 .fade-in-up {
     opacity: 0;
     transform: translateY(20px);
@@ -77,7 +75,6 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Hero */
 .hero { padding: 20px 0 40px; }
 .badge { display: inline-flex; align-items: center; background: var(--surface); border: 1px solid var(--border); color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; padding: 4px 14px; border-radius: 4px; margin-bottom: 24px; letter-spacing: 0.05em; cursor: default; }
 .hero h1 { font-size: 3.2rem; font-weight: 800; letter-spacing: -0.04em; color: #ffffff; margin-bottom: 16px; line-height: 1.1; }
@@ -91,7 +88,6 @@ body {
 .btn-secondary { color: var(--text-muted); }
 .btn-secondary:hover { color: #ffffff; border-bottom-color: #ffffff; }
 
-/* Terminal */
 .terminal { background: #0a0a0c; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 48px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.6); transition: opacity 0.3s ease, transform 0.3s ease; }
 .terminal-header { background: #121214; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); }
 .terminal-title { color: #666; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 400; margin-left: auto; margin-right: auto; transform: translateX(-24px); }
@@ -113,7 +109,6 @@ body {
 .cursor { display: inline-block; width: 10px; height: 18px; background: var(--accent); border: none; outline: none; animation: blink 1s step-end infinite; margin-left: 2px; cursor: pointer; }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* Sekcje */
 .features, .steps, .faq, .about { padding: 80px 0; border-top: 1px solid var(--border); }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 24px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -136,7 +131,10 @@ body {
 .faq-item h4 { color: #ffffff; font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
 .faq-item p { color: var(--text-muted); font-size: 0.9rem; }
 
-/* Footer */
+#hero, #about, #projects {
+    scroll-margin-top: 70px; 
+}
+
 footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 20px; }
 .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 .footer-brand { font-family: var(--font-mono); color: var(--text-dim); font-size: 0.8rem; }
@@ -144,6 +142,8 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 20px;
 
 @media (max-width: 640px) {
     body { padding-top: 60px; }
+
+    #hero, #about, #projects { scroll-margin-top: 60px; }
     .nav-links { gap: 14px; }
     .nav-links a { font-size: 0.75rem; }
     .nav-back .back-btn { font-size: 0.7rem; padding: 2px 8px; }
