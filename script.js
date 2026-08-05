@@ -1,6 +1,5 @@
 window.addEventListener('load', function() {
     
-    // 1. Animacje scrollowania (dla fade-in-up)
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -13,7 +12,6 @@ window.addEventListener('load', function() {
         observer.observe(el);
     });
 
-    // 2. Płynne przejście między podstronami
     document.querySelectorAll('.nav-links a, .hero-buttons a').forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -27,7 +25,6 @@ window.addEventListener('load', function() {
         });
     });
 
-    // 3. Jeśli odświeżysz stronę bez #w adresie, podkreśl Home
     if (!window.location.hash) {
         document.getElementById('nav-home').classList.add('active-link');
     }
