@@ -14,19 +14,18 @@
     <nav class="navbar">
         <div class="container nav-container">
             <ul class="nav-links">
-                <li><a href="index.html" class="active-link">Home</a></li>
-                <li><a href="tutorial.html">Tutorial</a></li>
-                <li><a href="requirements.html">Requirements</a></li>
-                <li><a href="info.html">Info</a></li>
+                <li><a href="index.html" class="active-link" id="nav-home">Home</a></li>
+                <li><a href="tutorial.html" id="nav-tutorial">Tutorial</a></li>
+                <li><a href="info.html" id="nav-info">Info</a></li>
+                <!-- Przycisk powrotu do głównego portfolio -->
+                <li><a href="https://keyfti.github.io/" style="color: #facc15; border-bottom-color: #facc15;">← keyfti</a></li>
             </ul>
-            <div class="nav-back">
-                <a href="https://keyfti.github.io/" class="back-btn">← keyfti</a>
-            </div>
         </div>
     </nav>
 
-    <header class="hero">
+    <header class="hero" id="hero">
         <div class="container">
+            <!-- Terminal z animacją wejścia -->
             <div class="terminal animate-slide-down" id="terminal">
                 <div class="terminal-header">
                     <div class="terminal-dots">
@@ -40,13 +39,14 @@
                     <div class="output-container" id="output-container">
                         <div class="tux-side" id="tux-click"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Tux.png" alt="Tux" class="tux-img"></div>
                         <div class="sys-side" id="sys-info">
-                            <div><strong>OS:</strong> Linux From Nothing v0.1.0</div>
-                            <div>Build: x86_64</div>
-                            <div>Kernel: 7.1.6 (Stable)</div>
-                            <div>Toolchain: GCC 14.2.0 · Glibc 2.41</div>
-                            <div>Shell: bash 5.2.42</div>
-                            <div>Init: Custom / BusyBox / OpenRC (Selectable)</div>
-                            <div><span>Status:</span> <span style="color: #facc15;">Fully independent system</span></div>
+                            <div><strong>OS:</strong> Linux From Nothing</div>
+                            <div><strong>Version:</strong> Alfa v0.1</div>
+                            <div><strong>Build:</strong> x86_64</div>
+                            <div><strong>Kernel:</strong> 7.1.6 (Stable)</div>
+                            <div><strong>Toolchain:</strong> GCC 14.2.0 · Glibc 2.41</div>
+                            <div><strong>Shell:</strong> bash 5.2.42</div>
+                            <div><strong>Init:</strong> Custom / BusyBox / OpenRC (Selectable)</div>
+                            <div><span>Status:</span> <span style="color: #facc15;">Independent development project</span></div>
                         </div>
                     </div>
                     <div class="line" style="margin-top: 12px;">
@@ -55,12 +55,13 @@
                 </div>
             </div>
 
+            <!-- Hero z opóźnieniami -->
             <div class="hero-content">
-                <div class="badge fade-in-up delay-1" id="secret-badge">v0.1.0</div>
+                <div class="badge fade-in-up delay-1" id="secret-badge">Alfa v0.1</div>
                 <h1 class="fade-in-up delay-2">Linux From Nothing</h1>
                 <p class="hero-text fade-in-up delay-3">
-                    Building an independent operating system from bare disk space.<br>
-                    Environment configuration, kernel compilation, and user-space preparation.
+                    Linux From Nothing (LFN) to niezależny projekt dystrybucji Linuxa budowanej od zera przy użyciu spersonalizowanego środowiska Archiso.<br>
+                    System stworzony dla programistów i entuzjastów szukających pełnej kontroli nad architekturą oprogramowania.
                 </p>
                 <div class="hero-buttons fade-in-up delay-4">
                     <a href="https://github.com/keyfti/linux-from-nothing" class="btn-primary">Open repository</a>
@@ -70,14 +71,12 @@
         </div>
     </header>
 
-    <section class="about fade-in-up visible">
+    <section id="about" class="about fade-in-up visible">
         <div class="container">
             <div class="section-label">// ABOUT</div>
             <h2 class="section-title">What is LFN?</h2>
             <p style="color: var(--text-muted); font-size: 1.05rem; max-width: 600px; line-height: 1.8;">
-                Linux From Nothing is a fully customizable, source-based Linux distribution built entirely from scratch. 
-                Unlike traditional distros, you control every binary, library, and boot script. 
-                It is designed for low-level system education and minimal embedded environments.
+                Linux From Nothing (LFN) to niezależny projekt dystrybucji Linuxa budowanej od zera przy użyciu spersonalizowanego środowiska Archiso. System stworzony dla programistów i entuzjastów szukających pełnej kontroli nad architekturą oprogramowania.
             </p>
         </div>
     </section>
